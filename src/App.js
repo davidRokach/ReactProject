@@ -1,8 +1,10 @@
 import "./App.css";
 import Card from "./cards/components/card/Card";
+// import OnClick from "./sendbox/events/OnClick";
+// import RaisingEvents from "./sendbox/events/RaisingEvents";
 // import LayoutComponents from "./components/LayoutComponents";
 // import ListsComponents from "./components/ListsComponents";
-// import Card from "./components/Card";
+// import FatherPropTypes from "./sendbox/propTypes/FatherPropTypes";
 // import ChildComp from "./components/ChildComponent";
 // import PageHeader from "./components/PageHeader";
 // import TypographyComponent from "./components/TypographyComponent";
@@ -13,6 +15,9 @@ function App() {
   return (
     <div className="App">
       <Card />
+      {/* <FatherPropTypes /> */}
+      {/* <OnClick />
+      <RaisingEvents /> */}
       {/* <PageHeader />
       <ChildComp
         str={str}

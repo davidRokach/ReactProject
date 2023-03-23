@@ -2,12 +2,12 @@ import MuiCard from "@mui/material/Card";
 import CardHead from "./CardHeadComponent";
 import CardBody from "./CardBody";
 import CardActionBar from "./CardActionBar";
-import { CardActionArea } from "@mui/material";
-import Cards from "../../Cards";
-// import { card } from "../../Cards";
+import { Box, CardActionArea, Grid, Typography } from "@mui/material";
+import Cards from "../Cards";
+import cardType from "../../models/types/cardType";
 
+let { card, handleCardDelete, handleCardLIke } = Cards();
 const Card = () => {
-  let { card } = Cards();
   // const card = {
   //   _id: "14518948226",
   //   name: "Jony Rokach",
@@ -30,32 +30,64 @@ const Card = () => {
   //   },
   //   createAt: new Date(),
   // };
+  if (!card.length) {
+    <Typography>Ooops it seams that there are no cards to show</Typography>;
+  }
+
   return (
     <>
-      {card.map((item, index, array) => {
-        return (
-          <MuiCard
-            key={index}
-            sx={{ width: 280, margin: "auto", marginTop: 2, padding: 1 }}
-            raised
-          >
-            <CardActionArea>
-              <CardHead image={item.image} />
-            </CardActionArea>
-            <CardBody
-              name={item.name}
-              profession={item.profession}
-              phone={item.phone}
-              email={item.email}
-              cardNumber={item.cardNumber}
-              address={item.address}
-            />
-            <CardActionBar />
-          </MuiCard>
-        );
-      })}
+      <Grid container spacing={2}>
+        {card.map((item) => {
+          return (
+            <Grid item xs={12} md={4} key={item._id}>
+              <Box>
+                <MuiCard
+                  sx={{
+                    width: 280,
+                    margin: "auto",
+                    marginTop: 2,
+                    padding: 1,
+                  }}
+                  raised
+                >
+                  <CardActionArea>
+                    <CardHead image={item.image} />
+                  </CardActionArea>
+                  <CardBody
+                    name={item.name}
+                    profession={item.profession}
+                    phone={item.phone}
+                    email={item.email}
+                    cardNumber={item.cardNumber}
+                    address={item.address}
+                  />
+                  <CardActionBar
+                    cardId={item._id}
+                    handleCardDelete={handleCardDelete}
+                    handleCardLIke={handleCardLIke}
+                  />
+                </MuiCard>
+              </Box>
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 };
 
+CardActionBar.prototype = {
+  image: cardType.image,
+};
+CardBody.prototype = {
+  name: cardType.name,
+  profession: cardType.profession,
+  phone: cardType.phone,
+  email: cardType.email,
+  cardNumber: cardType.cardNumber,
+  address: cardType.address,
+};
+CardHead.prototype = {
+  cardId: cardType._id,
+};
 export default Card;

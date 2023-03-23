@@ -1,15 +1,16 @@
 import { Box, IconButton } from "@mui/material";
 import { Delete, Edit, LinkedIn, Twitter } from "@mui/icons-material";
+import cardType from "../../models/types/cardType";
 
-const CardActionBar = () => {
+const CardActionBar = ({ handleCardDelete, handleCardLIke, cardId }) => {
   return (
     <>
       <Box display="flex">
         <Box>
-          <IconButton>
+          <IconButton onClick={() => handleCardLIke(cardId)}>
             <Edit />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => handleCardDelete(cardId)}>
             <Delete />
           </IconButton>
         </Box>
@@ -25,5 +26,8 @@ const CardActionBar = () => {
       </Box>
     </>
   );
+};
+CardActionBar.prototype = {
+  image: cardType.image,
 };
 export default CardActionBar;

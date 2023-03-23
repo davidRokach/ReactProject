@@ -1,4 +1,5 @@
 import { CardContent, CardHeader, Divider, Typography } from "@mui/material";
+import cardType from "../../models/types/cardType";
 
 const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
   const { city, street, houseNumber } = address;
@@ -8,7 +9,7 @@ const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
       <Divider sx={{ marginX: 1 }} />
       <CardContent>
         <Typography textAlign="left" color="text.secondary">
-          <Typography variant="subtitle2" component="strond">
+          <Typography variant="subtitle2" component="strong">
             Phone:{" "}
           </Typography>
           {phone}
@@ -37,5 +38,14 @@ const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
       </CardContent>
     </>
   );
+};
+
+CardBody.prototype = {
+  name: cardType.name,
+  profession: cardType.profession,
+  phone: cardType.phone,
+  email: cardType.email,
+  cardNumber: cardType.cardNumber,
+  address: cardType.address,
 };
 export default CardBody;

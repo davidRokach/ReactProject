@@ -1,4 +1,10 @@
 const Cards = () => {
+  const handleCardDelete = (_id) => {
+    console.log(`you deleted card namber${_id}`);
+  };
+  const handleCardLIke = (_id) => {
+    console.log(`you like card namber${_id}`);
+  };
   const card = [
     {
       _id: "14518948226",
@@ -67,6 +73,6 @@ const Cards = () => {
       createAt: new Date(),
     },
   ];
-  return { card };
+  return { card, handleCardDelete, handleCardLIke };
 };
 export default Cards;
