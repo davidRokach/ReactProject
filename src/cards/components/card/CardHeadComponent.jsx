@@ -1,5 +1,5 @@
 import { CardMedia } from "@mui/material";
-import cardType from "../../models/types/cardType";
+// import cardType from "../../models/types/cardType";
 
 const CardHead = ({ image }) => {
   const { url, alt } = image;
@@ -10,7 +10,7 @@ const CardHead = ({ image }) => {
   );
 };
 
-CardHead.prototype = {
-  cardId: cardType._id,
-};
+// CardHead.prototype = {
+//   cardId: cardType._id,
+// };
 export default CardHead;

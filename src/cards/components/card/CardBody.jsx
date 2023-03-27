@@ -1,5 +1,5 @@
 import { CardContent, CardHeader, Divider, Typography } from "@mui/material";
-import cardType from "../../models/types/cardType";
+// import cardType from "../../models/types/cardType";
 
 const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
   const { city, street, houseNumber } = address;
@@ -40,12 +40,12 @@ const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
   );
 };
 
-CardBody.prototype = {
-  name: cardType.name,
-  profession: cardType.profession,
-  phone: cardType.phone,
-  email: cardType.email,
-  cardNumber: cardType.cardNumber,
-  address: cardType.address,
-};
+// CardBody.prototype = {
+//   name: cardType.name,
+//   profession: cardType.profession,
+//   phone: cardType.phone,
+//   email: cardType.email,
+//   cardNumber: cardType.cardNumber,
+//   address: cardType.address,
+// };
 export default CardBody;

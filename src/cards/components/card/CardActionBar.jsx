@@ -1,6 +1,6 @@
 import { Box, IconButton } from "@mui/material";
 import { Delete, Edit, LinkedIn, Twitter } from "@mui/icons-material";
-import cardType from "../../models/types/cardType";
+// import cardType from "../../models/types/cardType";
 
 const CardActionBar = ({ handleCardDelete, handleCardLIke, cardId }) => {
   return (
@@ -27,7 +27,7 @@ const CardActionBar = ({ handleCardDelete, handleCardLIke, cardId }) => {
     </>
   );
 };
-CardActionBar.prototype = {
-  image: cardType.image,
-};
+// CardActionBar.prototype = {
+//   image: cardType.image,
+// };
 export default CardActionBar;

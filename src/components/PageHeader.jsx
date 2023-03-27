@@ -1,30 +1,26 @@
 // import { Box, Button } from "@mui/material";
-import "./pageHeader.css";
+// import "./pageHeader.css";
+import { string } from "prop-types";
+import { Divider } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
-const PageHeader = () => {
-  const header = "pageHeader works! string interpolation";
-
-  const headLineStyle = {
-    color: "red",
-    fontFamily: "Roboto, sans-serif",
-  };
+const PageHeader = ({ title, subtitle }) => {
   return (
     <>
-      <h2>{header}</h2>
-      <h2 style={headLineStyle}>inline style</h2>
-      <h2 className="blue">style form module</h2>
-      <h2 style={{ marginBottom: "50px", fontSize: "5vw", color: "red" }}>
-        {5 * 5}
-      </h2>
-
-      {/* <Box m={2} display="flex" justifyContent="space-evenly">
-        <Button variant="text">text</Button>
-        <Button variant="contained">text</Button>
-        <Button variant="outlined">text</Button>
-        <Button variant="outlined">text</Button>
-        <Button variant="outlined">text</Button>
-      </Box> */}
+      <Typography variant="h2" component="h1">
+        {title}
+      </Typography>
+      <Typography variant="h5" component="h2">
+        {subtitle}
+      </Typography>
+      <Divider sx={{ my: 2 }} />
     </>
   );
 };
+
+PageHeader.prototype = {
+  title: string.isRequired,
+  subtitle: string.isRequired,
+};
+
 export default PageHeader;
