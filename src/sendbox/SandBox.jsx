@@ -1,6 +1,13 @@
 import { SetArray } from "./hooks/SetArray";
+import FatherPropTypes from "./propTypes/FatherPropTypes";
 
 const SandBox = () => {
-  return <SetArray />;
+  return (
+    <>
+      <SetArray />
+      <br />
+      <FatherPropTypes />
+    </>
+  );
 };
 export default SandBox;
