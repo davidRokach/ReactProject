@@ -1,5 +1,7 @@
+import { NavBar } from "./TopNavBar/NavBar";
+
 const Header = () => {
-  return <div>Header</div>;
+  return <NavBar></NavBar>;
 };
 
 export default Header;

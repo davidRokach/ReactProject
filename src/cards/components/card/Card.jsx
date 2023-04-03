@@ -5,8 +5,11 @@ import CardActionBar from "./CardActionBar";
 import { CardActionArea } from "@mui/material";
 import { func } from "prop-types";
 import cardType from "../../models/types/cardType";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
 const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
+  const navigate = useNavigate();
   return (
     <MuiCard
       sx={{
@@ -17,17 +20,20 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
       }}
       raised
     >
-      <CardActionArea>
+      <CardActionArea
+        onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
+      >
         <CardHead image={card.image} />
+        <CardBody
+          name={card.name}
+          profession={card.profession}
+          phone={card.phone}
+          email={card.email}
+          cardNumber={card.cardNumber}
+          address={card.address}
+        />
       </CardActionArea>
-      <CardBody
-        name={card.name}
-        profession={card.profession}
-        phone={card.phone}
-        email={card.email}
-        cardNumber={card.cardNumber}
-        address={card.address}
-      />
+
       <CardActionBar
         cardId={card._id}
         handleCardDelete={handleDeleteCard}
