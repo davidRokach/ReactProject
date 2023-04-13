@@ -23,6 +23,7 @@ import UseEffectAsComponentDidMount from "../sendbox/life-cycle-hooks/UseEffectA
 import UseEffectAsComponentDidUpdate from "../sendbox/life-cycle-hooks/UseEffectAsComponentDidUpdate";
 import UseEffectAsComponentWillUnmount from "../sendbox/life-cycle-hooks/UseEffectAsComponentWillUnmount";
 import UseEffectAsComponentUpdateNoDeps from "../sendbox/life-cycle-hooks/UseEffectAsComponentUpdateNoDeps";
+import UseMemo from "../sendbox/memoization/useCallback/UseMemo";
 
 const Router = () => {
   return (
@@ -50,6 +51,7 @@ const Router = () => {
         {/*memoization */}
         <Route path={"memoization"} element={<Memoization />}>
           <Route path={"use-callback"} element={<UseCallback />} />
+          <Route path={"use-memo"} element={<UseMemo />} />
         </Route>
 
         {/*life-cycle  */}
