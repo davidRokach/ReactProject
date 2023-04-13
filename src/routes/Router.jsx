@@ -14,6 +14,15 @@ import { SetCounter } from "../sendbox/hooks/SetCounter";
 import { SetObject } from "../sendbox/hooks/SetObject";
 import { SetPost } from "../sendbox/hooks/SetPost";
 import Hooks from "../sendbox/hooks/Hooks";
+import LifeCycleHooks from "../sendbox/life-cycle-hooks/LifeCycleHooks";
+import InitialCycle from "../sendbox/life-cycle-hooks/InitialCycle";
+import UseStateCycle from "../sendbox/life-cycle-hooks/UseStateCycle";
+import Memoization from "../sendbox/memoization/Memoization";
+import UseCallback from "../sendbox/memoization/useCallback/UseCallback";
+import UseEffectAsComponentDidMount from "../sendbox/life-cycle-hooks/UseEffectAsComponentDidMount";
+import UseEffectAsComponentDidUpdate from "../sendbox/life-cycle-hooks/UseEffectAsComponentDidUpdate";
+import UseEffectAsComponentWillUnmount from "../sendbox/life-cycle-hooks/UseEffectAsComponentWillUnmount";
+import UseEffectAsComponentUpdateNoDeps from "../sendbox/life-cycle-hooks/UseEffectAsComponentUpdateNoDeps";
 
 const Router = () => {
   return (
@@ -22,16 +31,49 @@ const Router = () => {
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SINGUP} element={<SingUpPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
+
+      {/*SANDBOX */}
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path={"props"} element={<PropTypeChild />} />
+        <Route path={"events"} element={<OnClick />} />
+
+        {/*hooks */}
         <Route path={"hooks"} element={<Hooks />}>
           <Route path={"SetArray"} element={<SetArray />} />
           <Route path={"SetCounter"} element={<SetCounter />} />
           <Route path={"SetObject"} element={<SetObject />} />
           <Route path={"SetPost"} element={<SetPost />} />
         </Route>
-        <Route path={"events"} element={<OnClick />} />
+
+        {/*memoization */}
+        <Route path={"memoization"} element={<Memoization />}>
+          <Route path={"use-callback"} element={<UseCallback />} />
+        </Route>
+
+        {/*life-cycle  */}
+        <Route path="life-cycle" element={<LifeCycleHooks />}>
+          {" "}
+          <Route path="initial" element={<InitialCycle />} />{" "}
+          <Route path="use-state-cycle" element={<UseStateCycle />} />{" "}
+          <Route
+            path="component-did-mount"
+            element={<UseEffectAsComponentDidMount />}
+          />{" "}
+          <Route
+            path="component-did-update"
+            element={<UseEffectAsComponentDidUpdate />}
+          />{" "}
+          <Route
+            path="component-will-unmount"
+            element={<UseEffectAsComponentWillUnmount />}
+          />{" "}
+          <Route
+            path="component-no-dependencies"
+            element={<UseEffectAsComponentUpdateNoDeps />}
+          />{" "}
+        </Route>
       </Route>
 
       <Route path="*" element={<ErorrPage />} />

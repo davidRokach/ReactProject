@@ -38,7 +38,7 @@ PropTypeChild.propTypes = {
     image: imageType,
   }),
 
-  node: PropTypes.node.isRequired,
+  node: PropTypes.node,
   children: PropTypes.string,
 };
 PropTypeChild.defaultProps = {
