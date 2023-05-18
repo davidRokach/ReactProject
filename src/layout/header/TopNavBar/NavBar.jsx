@@ -1,10 +1,19 @@
-import { AppBar, Toolbar } from "@mui/material";
-import { LeftNavigation } from "./LeftNavigation";
+import { AppBar, Box, Toolbar } from "@mui/material";
+import RightNavBar from "./right-navigation/RightNavBar";
+import { LeftNavigation } from "./left-navigations/LeftNavigation";
+import SearchBar from "./right-navigation/SearchBar";
+
 export const NavBar = () => {
   return (
     <AppBar position="sticky">
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <LeftNavigation />
+
+        <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
+          <SearchBar />
+        </Box>
+
+        <RightNavBar />
       </Toolbar>
     </AppBar>
   );

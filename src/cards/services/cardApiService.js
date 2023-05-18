@@ -6,7 +6,56 @@ export const getCards = async () => {
   try {
     const { data } = await axios.get(`${apiUrl}/cards`);
     return data;
-  } catch (erorr) {
-    return Promise.reject(erorr.message);
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+
+export const getCard = async (cardId) => {
+  try {
+    const { data } = await axios.get(`${apiUrl}/cards/${cardId}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+export const getMyCards = async () => {
+  try {
+    const { data } = await axios.get(`${apiUrl}/cards/my-cards`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+export const creactCard = async (card) => {
+  try {
+    const { data } = await axios.post(`${apiUrl}/cards/${card}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+export const editCard = async (card) => {
+  try {
+    const { data } = await axios.put(`${apiUrl}/cards/${card}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+export const changeLikesStatus = async (cardId) => {
+  try {
+    const { data } = await axios.patch(`${apiUrl}/cards/${cardId}}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+export const deleteCard = async (cardId) => {
+  try {
+    const { data } = await axios.delete(`${apiUrl}/cards/${cardId}}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
   }
 };

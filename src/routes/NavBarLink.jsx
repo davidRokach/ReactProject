@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBarLink = ({ to, color, children }) => {
   return (
     <>
-      <Link to={to} style={{ color, textDecorationLine: "none" }}>
+      <Link to={to} style={{ color: color, textDecorationLine: "none" }}>
         {children}
       </Link>
     </>
@@ -16,7 +16,7 @@ NavBarLink.protoType = {
   children: node.isRequired,
 };
 NavBarLink.defaultProps = {
-  color: "black",
+  color: "#fff",
 };
 
 export default NavBarLink;

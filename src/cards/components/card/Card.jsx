@@ -25,11 +25,11 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
       >
         <CardHead image={card.image} />
         <CardBody
-          name={card.name}
+          name={card.title}
           profession={card.profession}
           phone={card.phone}
           email={card.email}
-          cardNumber={card.cardNumber}
+          cardNumber={card.bizNumber}
           address={card.address}
         />
       </CardActionArea>
@@ -44,8 +44,8 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 };
 Card.propTypes = {
   card: cardType.isRequired,
-  handleDeleteCard: func.isRequired,
-  handleLikeCard: func.isRequired,
+  // handleDeleteCard: func.isRequired,
+  // handleLikeCard: func.isRequired,
 };
 
 export default Card;

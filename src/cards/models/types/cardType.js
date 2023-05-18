@@ -1,17 +1,17 @@
-import { shape, string } from "prop-types";
+import { number, shape, string } from "prop-types";
 import addressType from "./addressType";
 import imageType from "./imageType";
 
 const cardType = shape({
   _id: string.isRequired,
-  name: string.isRequired,
-  profession: string.isRequired,
+  title: string.isRequired,
+  subtitle: string.isRequired,
   phone: string.isRequired,
   email: string.isRequired,
-  cardNumber: string.isRequired,
+  bizNumber: number.isRequired,
   image: imageType,
   address: addressType,
-  createAt: string.isRequired,
+  createdAt: string.isRequired,
 });
 
 export default cardType;

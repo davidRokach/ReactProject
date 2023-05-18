@@ -2,10 +2,10 @@ import { Box, Grid, Typography } from "@mui/material";
 import Card from "./card/Card";
 // import CardsPage from "../pages/CardsPages";
 
-const Cards = ({ cards }) => {
-  const handleCardDelete = (_id) => {
-    console.log(`you deleted card namber:${_id}`);
-  };
+const Cards = ({ cards, onDelete }) => {
+  // const handleCardDelete = (_id) => {
+  //   console.log(`you deleted card namber:${_id}`);
+  // };
   const handleCardLIke = (_id) => {
     console.log(`you like card namber:${_id}`);
   };
@@ -25,7 +25,7 @@ const Cards = ({ cards }) => {
               <Card
                 key={card._id}
                 card={card}
-                handleDeleteCard={handleCardDelete}
+                handleDeleteCard={onDelete}
                 handleLikeCard={handleCardLIke}
               />
             </Box>

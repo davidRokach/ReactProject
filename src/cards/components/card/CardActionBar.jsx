@@ -1,5 +1,5 @@
 import { Box, IconButton } from "@mui/material";
-import { Delete, Edit, LinkedIn, Twitter } from "@mui/icons-material";
+import { Delete, Edit, HeartBroken, Twitter } from "@mui/icons-material";
 // import cardType from "../../models/types/cardType";
 
 const CardActionBar = ({ handleCardDelete, handleCardLIke, cardId }) => {
@@ -20,7 +20,7 @@ const CardActionBar = ({ handleCardDelete, handleCardLIke, cardId }) => {
             <Twitter />
           </IconButton>
           <IconButton>
-            <LinkedIn />
+            <HeartBroken />
           </IconButton>
         </Box>
       </Box>

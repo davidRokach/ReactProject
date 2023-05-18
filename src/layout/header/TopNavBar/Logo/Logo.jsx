@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 const Logo = () => {
   return (
     <>
-      <NavBarLink to={ROUTES.CARDS}>
+      <NavBarLink to={ROUTES.CARDS} color={"inherit"}>
         <Typography
           variant="h4"
           sx={{

@@ -24,11 +24,16 @@ import UseEffectAsComponentDidUpdate from "../sendbox/life-cycle-hooks/UseEffect
 import UseEffectAsComponentWillUnmount from "../sendbox/life-cycle-hooks/UseEffectAsComponentWillUnmount";
 import UseEffectAsComponentUpdateNoDeps from "../sendbox/life-cycle-hooks/UseEffectAsComponentUpdateNoDeps";
 import UseMemo from "../sendbox/memoization/useCallback/UseMemo";
+import TodoComponents from "../sendbox/todo-list/TodoComponents";
+import MyCards from "../cards/pages/MyCards";
+import A from "../sendbox/context/components/A";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
+      <Route path={ROUTES.MY_CARDS} element={<MyCards />} />
+
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SINGUP} element={<SingUpPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
@@ -39,6 +44,8 @@ const Router = () => {
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path={"props"} element={<PropTypeChild />} />
         <Route path={"events"} element={<OnClick />} />
+        <Route path={"todo-list"} element={<TodoComponents />} />
+        <Route path="context" element={<A />} />
 
         {/*hooks */}
         <Route path={"hooks"} element={<Hooks />}>
