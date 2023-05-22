@@ -25,6 +25,7 @@ const UseMemo = () => {
         <Box>
           <Typography align="center">Age: {age}</Typography>
           <Typography align="center">Age Multiple: {slowFunction}</Typography>
+          <Typography align="center">Height: {height}</Typography>
 
           <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
             <Button onClick={incrementAge}>Age</Button>

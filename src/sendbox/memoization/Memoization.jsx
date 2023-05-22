@@ -7,8 +7,8 @@ const Memoization = () => {
     <>
       <AppBar position="static" color="transparent" sx={{ mb: "5px" }}>
         <Toolbar>
-          <NavItem label="use Callback" color="black" to="use-callback" />
-          <NavItem label="use memo" color="black" to="use-memo" />
+          <NavItem label="use Callback" color="inherit" to="use-callback" />
+          <NavItem label="use memo" color="inherit" to="use-memo" />
         </Toolbar>
       </AppBar>
 

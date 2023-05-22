@@ -7,13 +7,13 @@ const SandBox = () => {
     <>
       <AppBar position="static" color="transparent" sx={{ mb: "5px" }}>
         <Toolbar>
-          <NavItem label="props" color="black" to="props" />
-          <NavItem label="hooks" color="black" to="hooks" />
-          <NavItem label="events" color="black" to="events" />
-          <NavItem label="life cycle hooks" color="black" to="life-cycle" />
-          <NavItem label="memoization" color="black" to="memoization" />
-          <NavItem label="todo list" color="black" to="todo-list" />
-          <NavItem label="context" color="black" to="context"></NavItem>
+          <NavItem label="props" color="inherit" to="props" />
+          <NavItem label="hooks" color="inherit" to="hooks" />
+          <NavItem label="events" color="inherit" to="events" />
+          <NavItem label="life cycle hooks" color="inherit" to="life-cycle" />
+          <NavItem label="memoization" color="inherit" to="memoization" />
+          <NavItem label="todo list" color="inherit" to="todo-list" />
+          <NavItem label="context" color="inherit" to="context"></NavItem>
         </Toolbar>
       </AppBar>
 

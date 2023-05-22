@@ -7,10 +7,10 @@ const Hooks = () => {
     <>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <NavItem label="Set Array" color="black" to="SetArray" />
-          <NavItem label="Set Counter" color="black" to="SetCounter" />
-          <NavItem label="Set Object" color="black" to="SetObject" />
-          <NavItem label="Set Post" color="black" to="SetPost" />
+          <NavItem label="Set Array" color="inherit" to="SetArray" />
+          <NavItem label="Set Counter" color="inherit" to="SetCounter" />
+          <NavItem label="Set Object" color="inherit" to="SetObject" />
+          <NavItem label="Set Post" color="inherit" to="SetPost" />
         </Toolbar>
       </AppBar>
       <Container maxWidth="lg" sx={{ mt: 3 }}>
