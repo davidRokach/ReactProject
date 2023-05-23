@@ -8,6 +8,7 @@ import SingUpPage from "../users/pages/SingUpPage";
 import LoginPage from "../users/pages/LoginPage";
 import CardDetailPage from "../cards/pages/CardDetailPage";
 import PropTypeChild from "../sendbox/propTypes/PropTypeChild";
+import FormTest from "../sendbox/forms/FormTest";
 import { SetArray } from "../sendbox/hooks/SetArray";
 import OnClick from "../sendbox/events/OnClick";
 import { SetCounter } from "../sendbox/hooks/SetCounter";
@@ -43,6 +44,7 @@ const Router = () => {
       {/*SANDBOX */}
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path={"props"} element={<PropTypeChild />} />
+        <Route path={"form"} element={<FormTest />} />
         <Route path={"events"} element={<OnClick />} />
         <Route path={"todo-list"} element={<TodoComponents />} />
         <Route path="context" element={<A />} />

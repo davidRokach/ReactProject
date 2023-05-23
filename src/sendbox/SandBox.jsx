@@ -14,6 +14,7 @@ const SandBox = () => {
           <NavItem label="memoization" color="inherit" to="memoization" />
           <NavItem label="todo list" color="inherit" to="todo-list" />
           <NavItem label="context" color="inherit" to="context"></NavItem>
+          <NavItem label="form" color="inherit" to="form"></NavItem>
         </Toolbar>
       </AppBar>
 
