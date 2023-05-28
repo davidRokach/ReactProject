@@ -27,6 +27,7 @@ import UseMemo from "../sendbox/memoization/useCallback/UseMemo";
 import TodoComponents from "../sendbox/todo-list/TodoComponents";
 import MyCards from "../cards/pages/MyCards";
 import A from "../sendbox/context/components/A";
+import FormsTest from "../sendbox/forms/FormsTest";
 
 const Router = () => {
   return (
@@ -45,6 +46,8 @@ const Router = () => {
         <Route path={"props"} element={<PropTypeChild />} />
         <Route path={"events"} element={<OnClick />} />
         <Route path={"todo-list"} element={<TodoComponents />} />
+        <Route path={"forms"} element={<FormsTest />} />
+
         <Route path="context" element={<A />} />
 
         {/*hooks */}

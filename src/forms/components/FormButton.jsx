@@ -1,18 +1,19 @@
 import { Button } from "@mui/material";
 import { bool, func, node, string } from "prop-types";
+import { memo } from "react";
 
-function FormButton({
-  varient,
-  component,
-  size,
-  color,
-  onClick,
-  disabled,
-  node,
-}) {
+const FormButton = ({
+  variant, // string - contained
+  component, // string - button
+  size, // string - medium
+  color, // string - primary
+  onClick, // func
+  disabled, // bool - false
+  node, // node
+}) => {
   return (
     <Button
-      variant={varient}
+      variant={variant}
       component={component}
       size={size}
       color={color}
@@ -23,8 +24,9 @@ function FormButton({
       {node}
     </Button>
   );
-}
-FormButton.prototype = {
+};
+
+FormButton.propTypes = {
   variant: string.isRequired,
   component: string.isRequired,
   size: string.isRequired,
@@ -35,11 +37,11 @@ FormButton.prototype = {
 };
 
 FormButton.defaultProps = {
-  variant: "containes",
+  variant: "contained",
   component: "button",
   size: "medium",
   color: "primary",
   disabled: false,
 };
 
-export default FormButton;
+export default memo(FormButton);

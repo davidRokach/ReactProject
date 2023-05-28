@@ -13,7 +13,8 @@ const SandBox = () => {
           <NavItem label="life cycle hooks" color="inherit" to="life-cycle" />
           <NavItem label="memoization" color="inherit" to="memoization" />
           <NavItem label="todo list" color="inherit" to="todo-list" />
-          <NavItem label="context" color="inherit" to="context"></NavItem>
+          <NavItem label="context" color="inherit" to="context" />
+          <NavItem label="forms" color="inherit" to="forms"></NavItem>
         </Toolbar>
       </AppBar>
 

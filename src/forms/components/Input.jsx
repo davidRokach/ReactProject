@@ -1,8 +1,8 @@
-import { TextField } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import { Grid, TextField } from "@mui/material";
 import { makeFirstLetterCapital } from "../utils/algoMethods";
 import { bool, func, object, string } from "prop-types";
 import { memo } from "react";
+
 const Input = ({
   variant,
   type,
@@ -14,30 +14,34 @@ const Input = ({
   handleChange,
   ...rest
 }) => {
+  console.log(Boolean(error));
+  console.log(error);
+
   return (
     <Grid item xs={12} {...rest}>
       <TextField
         variant={variant}
         label={makeFirstLetterCapital(label)}
         type={type}
+        name={name}
         value={data[name] || ""}
         required={required}
+        helperText={error}
         error={Boolean(error)}
         onChange={handleChange}
         fullWidth
         autoComplete="off"
-      ></TextField>
+      />
     </Grid>
   );
 };
 
-Input.prototype = {
+Input.propTypes = {
   variant: string,
-  type: string.isRequired,
+  type: string,
   name: string.isRequired,
   data: object.isRequired,
-  label: string,
-  required: bool.isRequired,
+  required: bool,
   error: string,
   handleChange: func.isRequired,
 };
