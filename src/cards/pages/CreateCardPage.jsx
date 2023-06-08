@@ -1,27 +1,26 @@
-import { Container, FormControlLabel, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import { Navigate } from "react-router-dom";
 
 import ROUTES from "../../routes/routesModel";
-import useUsers from "../hooks/useUsers";
 import useForm from "../../forms/hooks/useForm";
-import { useUser } from "../providers/UserProvider";
 import Input from "../../forms/components/Input";
 import Form from "../../forms/components/Form";
-import { CheckBox } from "@mui/icons-material";
-import initialSignupForm from "../helpers/initialForms/initialSignupForm";
-import signupSchema from "../models/joi-schema/singupSchema";
+import useCards from "../hooks/useCards";
+import initialCreateCard from "../helpers/initialForms/initialCreateCard";
+import cardsSchema from "../models/joi-schema/cardsSchema";
+import { useUser } from "../../users/providers/UserProvider";
 
-const SignupPage = () => {
-  const { handleSingup } = useUsers();
+const CreateCardPage = () => {
+  const { handleCreateCard } = useCards();
   const { value, ...rest } = useForm(
-    initialSignupForm,
-    signupSchema,
-    handleSingup
+    initialCreateCard,
+    cardsSchema,
+    handleCreateCard
   );
 
   const { user } = useUser();
 
-  if (user) return <Navigate replace to={ROUTES.CARDS} />;
+  if (!user?.isBusiness) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
     <Container
@@ -38,28 +37,28 @@ const SignupPage = () => {
         onReset={rest.handleReset}
         styles={{ maxWidth: "800px" }}
         title="register"
-        to={ROUTES.CARDS}
+        to={ROUTES.MY_CARDS}
       >
         <Input
-          name="first"
-          label="first name"
+          name="title"
+          label="title"
           error={value.errors.first}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
         />
         <Input
-          name="middle"
-          label="middle name"
+          name="subtitle"
+          label="subtitle"
           error={value.errors.middle}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
-          required={false}
+          required={true}
         />
         <Input
-          name="last"
-          label="last name"
+          name="description"
+          label="description"
           error={value.errors.last}
           handleChange={rest.handleChange}
           data={value.formData}
@@ -84,9 +83,9 @@ const SignupPage = () => {
           sm={6}
         />
         <Input
-          name="password"
-          label="password"
-          type="password"
+          name="web"
+          label="web"
+          type="url"
           error={value.errors.password}
           handleChange={rest.handleChange}
           data={value.formData}
@@ -161,25 +160,9 @@ const SignupPage = () => {
           sm={6}
           required={false}
         />
-
-        <Grid item>
-          <FormControlLabel
-            onChange={(e) =>
-              rest.setData({
-                ...value.formData,
-                isBusiness: !!e.target.checked,
-              })
-            }
-            name="isBusiness"
-            control={
-              <CheckBox value={value.formData.isBusiness} color="primary" />
-            }
-            label="Signup as Business"
-          ></FormControlLabel>
-        </Grid>
       </Form>
     </Container>
   );
 };
 
-export default SignupPage;
+export default CreateCardPage;

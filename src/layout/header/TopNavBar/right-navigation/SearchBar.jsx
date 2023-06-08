@@ -11,13 +11,14 @@ const SearchBar = () => {
     <Box display="inline-flex">
       <FormControl variant="standard">
         <OutlinedInput
-          sx={{ backgroundColor: "#e3f2fd" }}
+          sx={{ backgroundColor: "#e3f2fd", color: "black" }}
           placeholder="Search"
+          color="error"
           size="small"
           endAdornment={
             <InputAdornment position="end">
               <IconButton edge="end">
-                <SearchIcon />
+                <SearchIcon sx={{ color: "black" }} />
               </IconButton>
             </InputAdornment>
           }

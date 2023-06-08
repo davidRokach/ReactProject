@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import {
   changeLikesStatus,
   creactCard,
+  deleteCard,
   editCard,
   getCard,
   getCards,
@@ -9,6 +10,7 @@ import {
 } from "../services/cardApiService";
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../provider/SnackbarProvider";
+import normalizeCards from "../helpers/normalization/normalizeCards";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
@@ -42,12 +44,13 @@ const useCards = () => {
       setPending(true);
       const card = await getCard(cardId);
       requestStatus(false, null, null, card);
-      snack("you get the card successfully", "success");
+      // snack("you get the card successfully", "success");
     } catch (error) {
       requestStatus(false, error, null);
     }
   };
-  const handleGetmyCards = async () => {
+
+  const handleGetmyCards = useCallback(async () => {
     try {
       setPending(false);
       const cards = await getMyCards();
@@ -55,23 +58,25 @@ const useCards = () => {
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
-  const handleCreateCard = async (cardFormClient) => {
+  const handleCreateCard = useCallback(async (cardFormClient) => {
     try {
       setPending(false);
-      const card = await creactCard(cardFormClient);
+      const normalizedCard = normalizeCards(cardFormClient);
+      const card = await creactCard(normalizedCard);
       requestStatus(false, null, null, card);
       snack("you create the card successfully", "success");
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
-  const handleUpdateCard = async (cardFormClient) => {
+  const handleUpdateCard = async (newCard, cardId) => {
     try {
       setPending(false);
-      const card = await editCard(cardFormClient);
+      const normalizedCard = normalizeCards(newCard);
+      const card = await editCard(normalizedCard, cardId);
       requestStatus(false, null, null, card);
       snack("you update the card successfully", "success");
     } catch (error) {
@@ -79,15 +84,15 @@ const useCards = () => {
     }
   };
 
-  const handleDeleteCard = async (cardId) => {
+  const handleDeleteCard = useCallback(async (cardId) => {
     try {
       setPending(false);
-      await editCard(cardId);
+      await deleteCard(cardId);
       snack("you delete the card successfully", "success");
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
   const handleLikeCard = async (cardId) => {
     try {
@@ -101,11 +106,18 @@ const useCards = () => {
     }
   };
 
+  const value = useMemo(
+    () => ({
+      card,
+      cards,
+      isPending,
+      error,
+    }),
+    [card, cards, isPending, error]
+  );
+
   return {
-    card,
-    cards,
-    isPending,
-    error,
+    value,
     handleGetCards,
     handleGetCard,
     handleGetmyCards,

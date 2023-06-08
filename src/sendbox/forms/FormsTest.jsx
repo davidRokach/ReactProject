@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import Form from "../../forms/components/Form";
 import Input from "../../forms/components/Input";
 import { memo } from "react";
+import ROUTES from "../../routes/routesModel";
 
 const FormsTest = () => {
   const handleSubmit = (data) => console.log(data);
@@ -16,7 +17,6 @@ const FormsTest = () => {
   const INITIAL_FROM = { first: "", last: "" };
 
   const { value, ...rest } = useForm(INITIAL_FROM, schema, handleSubmit);
-  //   console.log(value.errors.first);
 
   return (
     <Container
@@ -33,6 +33,7 @@ const FormsTest = () => {
         onReset={rest.handleReset}
         onChange={rest.validateForm}
         styles={{ maxWidth: "450px" }}
+        to={ROUTES.SANDBOX}
       >
         <Input
           label="first"

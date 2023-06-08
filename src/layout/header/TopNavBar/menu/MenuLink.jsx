@@ -1,8 +1,8 @@
 import React from "react";
 import { string, func } from "prop-types";
-import NavBarLink from "./../../../../routes/components/NavBarLink";
 import { makeFirstLetterCapital } from "./utils/algoMethods";
 import MenuItem from "@mui/material/MenuItem";
+import NavBarLink from "../../../../routes/NavBarLink";
 
 const MenuLink = ({ label, navigateTo, onClick, styles }) => {
   return (

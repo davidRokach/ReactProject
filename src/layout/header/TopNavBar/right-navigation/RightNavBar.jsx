@@ -7,10 +7,13 @@ import NotLogged from "./NotLogged";
 import Logged from "./Logged";
 import MoreButton from "./MoreButton";
 import MenuBar from "./MenuBar";
+import { useUser } from "../../../../users/providers/UserProvider";
 
 const RightNavBar = () => {
-  const user = false;
+  // const user = false;
   let anchorEl = null;
+
+  const { user } = useUser();
 
   const setAnchorEl = (target) => {
     anchorEl = target;

@@ -1,17 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import NavItem from "../../../../routes/NavItem";
+import ROUTES from "../../../../routes/routesModel";
 
 const NotLogged = () => {
   return (
     <Box>
-      <Button color="inherit">
-        <Typography>Signup</Typography>
-      </Button>
-      <Button color="inherit">
-        <Typography>Login</Typography>
-      </Button>
+      <NavItem label="singup" to={ROUTES.SINGUP} />
+      <NavItem label="login" to={ROUTES.LOGIN} />
     </Box>
   );
 };

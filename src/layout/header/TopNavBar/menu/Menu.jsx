@@ -28,7 +28,8 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
       transformOrigin={{
         vertical: "top",
         horizontal: "right",
-      }}>
+      }}
+    >
       <Box>
         <MenuLink
           label="about"
@@ -47,7 +48,7 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
             />
             <MenuLink
               label="signup"
-              navigateTo={ROUTES.SIGNUP}
+              navigateTo={ROUTES.SINGUP}
               onClick={onClose}
               styles={{ display: { xs: "block", md: "none" } }}
             />

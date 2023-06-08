@@ -28,12 +28,15 @@ import TodoComponents from "../sendbox/todo-list/TodoComponents";
 import MyCards from "../cards/pages/MyCards";
 import A from "../sendbox/context/components/A";
 import FormsTest from "../sendbox/forms/FormsTest";
+import CreateCardPage from "../cards/pages/CreateCardPage";
+import MyCardsPage from "../cards/pages/MyCardsPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
-      <Route path={ROUTES.MY_CARDS} element={<MyCards />} />
+      <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
+      <Route path={ROUTES.CREATE_CARDS} element={<CreateCardPage />} />
 
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SINGUP} element={<SingUpPage />} />

@@ -74,8 +74,8 @@ const CardsPage = () => {
   //     createAt: new Date().toString(),
   //   },
   // ];
-  const { cards, isPending, error, handleGetCards } = useCards();
-
+  const { value, handleGetCards } = useCards();
+  const { isPending, error, cards } = value;
   useEffect(() => {
     handleGetCards();
   }, []);

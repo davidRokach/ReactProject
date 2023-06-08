@@ -14,9 +14,6 @@ const Input = ({
   handleChange,
   ...rest
 }) => {
-  console.log(Boolean(error));
-  console.log(error);
-
   return (
     <Grid item xs={12} {...rest}>
       <TextField

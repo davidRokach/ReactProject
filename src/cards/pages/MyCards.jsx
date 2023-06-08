@@ -5,8 +5,8 @@ import CardsFeedback from "../components/CardsFeedback";
 import { useEffect } from "react";
 
 const MyCards = () => {
-  const { handleGetmyCards, cards, isPending, error } = useCards();
-
+  const { handleGetmyCards, value } = useCards();
+  const { isPending, error, cards } = value;
   useEffect(() => {
     handleGetmyCards();
   }, []);

@@ -29,15 +29,15 @@ export const getMyCards = async () => {
 };
 export const creactCard = async (card) => {
   try {
-    const { data } = await axios.post(`${apiUrl}/cards/${card}`);
+    const { data } = await axios.post(`${apiUrl}/cards/`, card);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
   }
 };
-export const editCard = async (card) => {
+export const editCard = async (newCard, cardId) => {
   try {
-    const { data } = await axios.put(`${apiUrl}/cards/${card}`);
+    const { data } = await axios.put(`${apiUrl}/cards/${cardId}`, newCard);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
