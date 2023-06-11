@@ -36,13 +36,13 @@ const CreateCardPage = () => {
         onChange={rest.validateForm}
         onReset={rest.handleReset}
         styles={{ maxWidth: "800px" }}
-        title="register"
-        to={ROUTES.MY_CARDS}
+        title="Create Card"
+        to={ROUTES.CARDS}
       >
         <Input
           name="title"
           label="title"
-          error={value.errors.first}
+          error={value.errors.title}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
@@ -50,7 +50,7 @@ const CreateCardPage = () => {
         <Input
           name="subtitle"
           label="subtitle"
-          error={value.errors.middle}
+          error={value.errors.subtitle}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
@@ -59,7 +59,7 @@ const CreateCardPage = () => {
         <Input
           name="description"
           label="description"
-          error={value.errors.last}
+          error={value.errors.description}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
@@ -83,27 +83,28 @@ const CreateCardPage = () => {
           sm={6}
         />
         <Input
-          name="web"
-          label="web"
+          name="webUrl"
+          label="web url"
           type="url"
-          error={value.errors.password}
+          error={value.errors.webUrl}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
+          required={true}
         />
         <Input
-          name="url"
+          name="imageUrl"
           label="image url"
-          error={value.errors.url}
+          error={value.errors.imageUrl}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}
           required={false}
         />
         <Input
-          name="alt"
+          name="imageAlt"
           label="image alt"
-          error={value.errors.alt}
+          error={value.errors.imageAlt}
           handleChange={rest.handleChange}
           data={value.formData}
           sm={6}

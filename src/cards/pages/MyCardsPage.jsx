@@ -25,6 +25,10 @@ const MyCardsPage = () => {
     await handleGetmyCards();
   };
 
+  const handleCardLIke = (_id) => {
+    console.log(`you like card namber:${_id}`);
+  };
+
   return (
     <Container sx={{ position: "relative", minHeight: "92vh" }}>
       <PageHeader
@@ -50,6 +54,7 @@ const MyCardsPage = () => {
         error={error}
         cards={cards}
         onDelete={onDeleteCard}
+        onLike={handleCardLIke}
       />
     </Container>
   );

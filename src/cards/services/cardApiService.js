@@ -51,9 +51,9 @@ export const changeLikesStatus = async (cardId) => {
     return Promise.reject(error.message);
   }
 };
-export const deleteCard = async (cardId) => {
+export const deleteCard = async (id) => {
   try {
-    const { data } = await axios.delete(`${apiUrl}/cards/${cardId}}`);
+    const { data } = await axios.delete(`${apiUrl}/cards/${id}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

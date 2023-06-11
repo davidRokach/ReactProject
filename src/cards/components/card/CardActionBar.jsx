@@ -1,49 +1,82 @@
-import { Box, IconButton } from "@mui/material";
-import { Delete, Edit, HeartBroken, Twitter } from "@mui/icons-material";
+import { Box, CardActions, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CallIcon from "@mui/icons-material/Call";
 import { useUser } from "../../../users/providers/UserProvider";
-// import cardType from "../../models/types/cardType";
+import { useState } from "react";
+import { func, string } from "prop-types";
+import CardDeleteDialog from "./CardDeleteDialog";
 
-const CardActionBar = ({
-  handleCardDelete,
-  handleCardLIke,
-  cardId,
-  cardUserId,
-}) => {
+const CardActionBar = ({ onDelete, handleCardLike, cardId, cardUserId }) => {
+  const [isDialogopen, setDialog] = useState(false);
   const { user } = useUser();
+
+  const handleDialog = (term) => {
+    if (term === "open") return setDialog(true);
+    setDialog(false);
+  };
+  const handleDeleteCard = () => {
+    handleDialog();
+    onDelete(cardId);
+  };
 
   return (
     <>
-      <Box display="flex">
+      <CardActions
+        disableSpacing
+        sx={{ paddingTop: 0, justifyContent: "space-between" }}
+      >
         <Box>
-          {user?._id === cardUserId && (
-            <IconButton onClick={() => handleCardLIke(cardId)}>
-              <Edit />
+          {(user?._id === cardUserId || user?.isAdmin) && (
+            <IconButton
+              aria-label="delete card"
+              onClick={() => handleDialog("open")}
+            >
+              <DeleteIcon />
             </IconButton>
           )}
 
-          {(user?._id === cardUserId || user?.isAdmin) && (
-            <IconButton onClick={() => handleCardDelete(cardId)}>
-              <Delete />
+          {user?._id === cardUserId && (
+            <IconButton
+              aria-label="edit card"
+              onClick={() =>
+                console.log(`Move to Edit card component with card ${cardId}`)
+              }
+            >
+              <ModeEditIcon />
             </IconButton>
           )}
         </Box>
 
-        <Box sx={{ marginLeft: "39%" }}>
+        <Box>
           <IconButton>
-            <Twitter />
+            <CallIcon />
           </IconButton>
 
           {user && (
-            <IconButton>
-              <HeartBroken />
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() => handleCardLike(cardId)}
+            >
+              <FavoriteIcon />
             </IconButton>
           )}
         </Box>
-      </Box>
+      </CardActions>
+      <CardDeleteDialog
+        isDialogopen={isDialogopen}
+        onDelete={handleDeleteCard}
+        onChangeDialog={handleDialog}
+      />
     </>
   );
 };
-// CardActionBar.prototype = {
-//   image: cardType.image,
-// };
+
+CardActionBar.propTypes = {
+  cardId: string.isRequired,
+  onDelete: func.isRequired,
+  handleCardLike: func.isRequired,
+  cardUserId: string.isRequired,
+};
 export default CardActionBar;

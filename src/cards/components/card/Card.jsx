@@ -36,8 +36,8 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 
       <CardActionBar
         cardId={card._id}
-        handleCardDelete={handleDeleteCard}
-        handleCardLIke={handleLikeCard}
+        onDelete={handleDeleteCard}
+        handleCardLike={handleLikeCard}
         cardUserId={card.user_id}
       />
     </MuiCard>
@@ -45,8 +45,8 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 };
 Card.propTypes = {
   card: cardType.isRequired,
-  // handleDeleteCard: func.isRequired,
-  // handleLikeCard: func.isRequired,
+  handleDeleteCard: func.isRequired,
+  handleLikeCard: func.isRequired,
 };
 
 export default Card;

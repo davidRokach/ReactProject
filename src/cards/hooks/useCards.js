@@ -11,6 +11,8 @@ import {
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../provider/SnackbarProvider";
 import normalizeCards from "../helpers/normalization/normalizeCards";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
@@ -18,6 +20,7 @@ const useCards = () => {
   const [error, setError] = useState(null);
   const [isPending, setPending] = useState(false);
 
+  const navigate = useNavigate();
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setPending(loading);
     setCards(cards);
@@ -67,6 +70,7 @@ const useCards = () => {
       const card = await creactCard(normalizedCard);
       requestStatus(false, null, null, card);
       snack("you create the card successfully", "success");
+      navigate(ROUTES.MY_CARDS);
     } catch (error) {
       requestStatus(false, error, null);
     }

@@ -1,18 +1,18 @@
 const initialCreateCard = {
   title: "",
-  subtitle: "",
   description: "",
+  subtitle: "",
   phone: "",
   email: "",
-  web: "",
-  url: "",
-  alt: "",
+  webUrl: "",
+  imageUrl: "",
+  imageAlt: "",
   state: "",
   country: "",
   city: "",
   street: "",
-  houseNumber: 0,
   zip: 0,
+  houseNumber: 0,
 };
 
 export default initialCreateCard;

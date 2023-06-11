@@ -1,10 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import Card from "./card/Card";
 
-const Cards = ({ cards, onDelete }) => {
-  const handleCardLIke = (_id) => {
-    console.log(`you like card namber:${_id}`);
-  };
+const Cards = ({ cards, onDelete, onLike }) => {
   console.log(cards);
   if (!cards.length) {
     return (
@@ -22,7 +19,7 @@ const Cards = ({ cards, onDelete }) => {
                 key={card._id}
                 card={card}
                 handleDeleteCard={onDelete}
-                handleLikeCard={handleCardLIke}
+                handleLikeCard={onLike}
               />
             </Box>
           </Grid>

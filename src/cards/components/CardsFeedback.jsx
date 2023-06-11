@@ -5,7 +5,14 @@ import Cards from "./Cards";
 import { arrayOf, bool, func, object, string } from "prop-types";
 import Card from "./card/Card";
 
-const CardsFeedback = ({ error, cards, isPending, onDelete, card = null }) => {
+const CardsFeedback = ({
+  error,
+  cards,
+  isPending,
+  onDelete,
+  onLike,
+  card = null,
+}) => {
   if (isPending) return <Spinner />;
   if (error) return <Erorr errorMessage={error} />;
   if (cards && !cards.length)
@@ -15,8 +22,11 @@ const CardsFeedback = ({ error, cards, isPending, onDelete, card = null }) => {
         you enter
       </p>
     );
-  if (cards) return <Cards cards={cards} onDelete={onDelete} />;
-  if (card) return <Card card={card}></Card>;
+  if (cards) return <Cards cards={cards} onDelete={onDelete} onLike={onLike} />;
+  if (card)
+    return (
+      <Card card={card} onDelete={onDelete} handleLikeCard={onLike}></Card>
+    );
 };
 CardsFeedback.prototype = {
   isPending: bool.isRequired,

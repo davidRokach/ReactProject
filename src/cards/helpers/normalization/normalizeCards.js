@@ -1,10 +1,14 @@
 const normalizeCards = (card) => ({
   title: card.title,
-  subtitle: card.subtitle,
   description: card.description,
+  subtitle: card.subtitle,
   phone: card.phone,
   email: card.email,
-  web: card.web,
+  web: card.webUrl,
+  image: {
+    url: card.imageUrl,
+    alt: card.imageAlt,
+  },
   address: {
     state: card.state,
     country: card.country,
@@ -12,10 +16,6 @@ const normalizeCards = (card) => ({
     street: card.street,
     zip: card.zip,
     houseNumber: card.houseNumber,
-  },
-  image: {
-    url: card.url,
-    alt: card.alt,
   },
 });
 
