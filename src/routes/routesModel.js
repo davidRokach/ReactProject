@@ -4,6 +4,7 @@ const ROUTES = {
   CARDS: "/cards",
   MY_CARDS: "/myCards",
   CREATE_CARDS: "/createCards",
+  EDIT_CARD: "/editCards",
   FAV_CARDS: "/favCards",
   CARD_INFO: "/CARD-INFO",
   SINGUP: "/singup",

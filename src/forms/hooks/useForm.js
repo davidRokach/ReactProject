@@ -61,7 +61,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
   // return all the data and the errors form the form
   const value = useMemo(() => {
     return { formData, errors };
-  }, [formData, errors]);
+  }, [formData, errors, setFormData, setErrors]);
 
   return {
     value,

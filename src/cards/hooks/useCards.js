@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   changeLikesStatus,
   creactCard,
@@ -76,11 +76,11 @@ const useCards = () => {
     }
   }, []);
 
-  const handleUpdateCard = async (newCard, cardId) => {
+  const handleUpdateCard = async (newCard) => {
     try {
       setPending(false);
       const normalizedCard = normalizeCards(newCard);
-      const card = await editCard(normalizedCard, cardId);
+      const card = await editCard(normalizedCard, card._id);
       requestStatus(false, null, null, card);
       snack("you update the card successfully", "success");
     } catch (error) {

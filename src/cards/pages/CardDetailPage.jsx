@@ -7,19 +7,34 @@ import CardsFeedback from "../components/CardsFeedback";
 
 const CardDetailPage = () => {
   const { id } = useParams();
-  const { handleGetCard, card, isPending, error } = useCards();
-
+  const { handleGetCard, handleDeleteCard, value } = useCards();
+  const { card, isPending, error } = value;
   useEffect(() => {
     handleGetCard(id);
   }, []);
 
+  const onDeleteCard = async (cardId) => {
+    await handleDeleteCard(cardId); // this will delete the card from the DB
+    await handleGetCard();
+  };
+
+  const handleCardLIke = (_id) => {
+    console.log(`you like card namber:${_id}`);
+  };
+  console.log(card);
   return (
     <Container maxWidth="lg">
       <PageHeader
         title="card Details"
-        subtitle="Here you acn find more details about the card"
+        subtitle="Here you can find more details about the card"
       ></PageHeader>
-      <CardsFeedback isPending={isPending} error={error} card={card} />
+      <CardsFeedback
+        isPending={isPending}
+        error={error}
+        card={card}
+        onDeleten={onDeleteCard}
+        onLike={handleCardLIke}
+      />
     </Container>
   );
 };

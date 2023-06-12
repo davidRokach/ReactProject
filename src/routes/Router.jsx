@@ -25,11 +25,11 @@ import UseEffectAsComponentWillUnmount from "../sendbox/life-cycle-hooks/UseEffe
 import UseEffectAsComponentUpdateNoDeps from "../sendbox/life-cycle-hooks/UseEffectAsComponentUpdateNoDeps";
 import UseMemo from "../sendbox/memoization/useCallback/UseMemo";
 import TodoComponents from "../sendbox/todo-list/TodoComponents";
-import MyCards from "../cards/pages/MyCards";
 import A from "../sendbox/context/components/A";
 import FormsTest from "../sendbox/forms/FormsTest";
 import CreateCardPage from "../cards/pages/CreateCardPage";
 import MyCardsPage from "../cards/pages/MyCardsPage";
+import EditCardPage from "../cards/pages/EditCardPage";
 
 const Router = () => {
   return (
@@ -43,6 +43,7 @@ const Router = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
 
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
+      <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} />
 
       {/*SANDBOX */}
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>

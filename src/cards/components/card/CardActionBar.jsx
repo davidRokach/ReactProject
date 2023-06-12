@@ -7,10 +7,13 @@ import { useUser } from "../../../users/providers/UserProvider";
 import { useState } from "react";
 import { func, string } from "prop-types";
 import CardDeleteDialog from "./CardDeleteDialog";
+import ROUTES from "../../../routes/routesModel";
+import { useNavigate } from "react-router-dom";
 
 const CardActionBar = ({ onDelete, handleCardLike, cardId, cardUserId }) => {
   const [isDialogopen, setDialog] = useState(false);
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
@@ -40,9 +43,7 @@ const CardActionBar = ({ onDelete, handleCardLike, cardId, cardUserId }) => {
           {user?._id === cardUserId && (
             <IconButton
               aria-label="edit card"
-              onClick={() =>
-                console.log(`Move to Edit card component with card ${cardId}`)
-              }
+              onClick={() => navigate(`${ROUTES.EDIT_CARD}/${cardId}`)}
             >
               <ModeEditIcon />
             </IconButton>

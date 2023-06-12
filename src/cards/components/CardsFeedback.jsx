@@ -27,6 +27,12 @@ const CardsFeedback = ({
     return (
       <Card card={card} onDelete={onDelete} handleLikeCard={onLike}></Card>
     );
+  return (
+    <p>
+      Oopsi... there are no card in the dadabase that match the parameters you
+      enter
+    </p>
+  );
 };
 CardsFeedback.prototype = {
   isPending: bool.isRequired,

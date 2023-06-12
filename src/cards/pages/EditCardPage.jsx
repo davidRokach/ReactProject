@@ -1,24 +1,33 @@
-import { Container } from "@mui/material";
-import { Navigate } from "react-router-dom";
-
-import ROUTES from "../../routes/routesModel";
+import { Navigate, useParams } from "react-router-dom";
 import useForm from "../../forms/hooks/useForm";
+import ROUTES from "../../routes/routesModel";
+import { useUser } from "../../users/providers/UserProvider";
+import cardsSchema from "../models/joi-schema/cardsSchema";
 import Input from "../../forms/components/Input";
 import Form from "../../forms/components/Form";
+import { Container } from "@mui/material";
+import normalizeEditCard from "../helpers/normalization/normalizeEditCard";
 import useCards from "../hooks/useCards";
-import initialCreateCard from "../helpers/initialForms/initialCreateCard";
-import cardsSchema from "../models/joi-schema/cardsSchema";
-import { useUser } from "../../users/providers/UserProvider";
+import { useEffect } from "react";
 
-const CreateCardPage = () => {
-  const { handleCreateCard } = useCards();
+const EditCardPage = () => {
+  const { id } = useParams();
+  const {
+    handleUpdateCard,
+    handleGetCard,
+    value: { card },
+  } = useCards();
+  const { user } = useUser();
+  const initialEditCard = normalizeEditCard(card);
   const { value, ...rest } = useForm(
-    initialCreateCard,
+    initialEditCard,
     cardsSchema,
-    handleCreateCard
+    handleUpdateCard
   );
 
-  const { user } = useUser();
+  useEffect(() => {
+    handleGetCard(id);
+  }, []);
 
   if (!user?.isBusiness) return <Navigate replace to={ROUTES.CARDS} />;
 
@@ -44,6 +53,12 @@ const CreateCardPage = () => {
     inputFactory("houseNumber", "houseNumber", true, "number"),
     inputFactory("zip", "zip", true, "number"),
   ];
+
+  if (!card) {
+    // Render loading state or return null until card is fetched
+    return null;
+  }
+  console.log(card);
 
   return (
     <Container
@@ -77,4 +92,4 @@ const CreateCardPage = () => {
   );
 };
 
-export default CreateCardPage;
+export default EditCardPage;
