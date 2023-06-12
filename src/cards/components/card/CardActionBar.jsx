@@ -43,7 +43,7 @@ const CardActionBar = ({ onDelete, handleCardLike, cardId, cardUserId }) => {
           {user?._id === cardUserId && (
             <IconButton
               aria-label="edit card"
-              onClick={() => navigate(`${ROUTES.EDIT_CARD}/${cardId}`)}
+              onClick={() => navigate(`../${ROUTES.EDIT_CARD}/${cardId}`)}
             >
               <ModeEditIcon />
             </IconButton>

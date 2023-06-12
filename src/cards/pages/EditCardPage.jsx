@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../forms/hooks/useForm";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../../users/providers/UserProvider";
@@ -9,27 +9,37 @@ import { Container } from "@mui/material";
 import normalizeEditCard from "../helpers/normalization/normalizeEditCard";
 import useCards from "../hooks/useCards";
 import { useEffect } from "react";
+import initialCreateCard from "../helpers/initialForms/initialCreateCard";
+import normalizeCards from "../helpers/normalization/normalizeCards";
 
 const EditCardPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const {
     handleUpdateCard,
     handleGetCard,
     value: { card },
   } = useCards();
+
   const { user } = useUser();
-  const initialEditCard = normalizeEditCard(card);
-  const { value, ...rest } = useForm(
-    initialEditCard,
-    cardsSchema,
-    handleUpdateCard
-  );
+
+  const { value, ...rest } = useForm(initialCreateCard, cardsSchema, () => {
+    handleUpdateCard(card._id, {
+      ...normalizeCards(value.formData),
+      user_id: card.user_id,
+      bizNumber: card.bizNumber,
+    });
+  });
 
   useEffect(() => {
-    handleGetCard(id);
+    handleGetCard(id).then((data) => {
+      if (data.user_id !== user._id) return navigate(ROUTES.CARDS);
+      const initialEditCard = normalizeEditCard(data);
+      rest.setFormData(initialEditCard);
+    });
   }, []);
 
-  if (!user?.isBusiness) return <Navigate replace to={ROUTES.CARDS} />;
+  if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   const inputFactory = (name, label, required, type) => ({
     name,
@@ -54,10 +64,6 @@ const EditCardPage = () => {
     inputFactory("zip", "zip", true, "number"),
   ];
 
-  if (!card) {
-    // Render loading state or return null until card is fetched
-    return null;
-  }
   console.log(card);
 
   return (

@@ -47,6 +47,7 @@ const useCards = () => {
       setPending(true);
       const card = await getCard(cardId);
       requestStatus(false, null, null, card);
+      return card;
       // snack("you get the card successfully", "success");
     } catch (error) {
       requestStatus(false, error, null);
@@ -76,11 +77,10 @@ const useCards = () => {
     }
   }, []);
 
-  const handleUpdateCard = async (newCard) => {
+  const handleUpdateCard = async (cardId, newCard) => {
     try {
       setPending(false);
-      const normalizedCard = normalizeCards(newCard);
-      const card = await editCard(normalizedCard, card._id);
+      const card = await editCard(cardId, newCard);
       requestStatus(false, null, null, card);
       snack("you update the card successfully", "success");
     } catch (error) {
@@ -101,7 +101,6 @@ const useCards = () => {
   const handleLikeCard = async (cardId) => {
     try {
       setPending(false);
-      const cards = await getCards();
       const card = await changeLikesStatus(cardId);
 
       requestStatus(false, null, cards, card);

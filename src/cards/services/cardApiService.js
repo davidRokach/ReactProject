@@ -35,9 +35,9 @@ export const creactCard = async (card) => {
     return Promise.reject(error.message);
   }
 };
-export const editCard = async (newCard, cardId) => {
+export const editCard = async (id, card) => {
   try {
-    const { data } = await axios.put(`${apiUrl}/cards/${cardId}`, newCard);
+    const { data } = await axios.put(`${apiUrl}/cards/${id}`, card);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -45,7 +45,7 @@ export const editCard = async (newCard, cardId) => {
 };
 export const changeLikesStatus = async (cardId) => {
   try {
-    const { data } = await axios.patch(`${apiUrl}/cards/${cardId}}`);
+    const { data } = await axios.patch(`${apiUrl}/cards/${cardId}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
