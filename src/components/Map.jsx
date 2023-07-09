@@ -12,7 +12,7 @@ const containerStyle = {
 const Map = ({ address }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAJ9XVqRqD2uuoVEETmxPeAWQHE_Sg-D4g",
+    googleMapsApiKey: "api key",
   });
 
   const [map, setMap] = useState(null);

@@ -63,7 +63,7 @@ export const deleteCard = async (id) => {
 export const geocodingMaps = async (address) => {
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${address.houseNumber}+${address.street},${address.city},+${address.country}&key=AIzaSyAJ9XVqRqD2uuoVEETmxPeAWQHE_Sg-D4g`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address.houseNumber}+${address.street},${address.city},+${address.country}&key=apikey`
     );
     const jsonData = await response.json();
 
