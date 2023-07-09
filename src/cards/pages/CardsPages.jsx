@@ -7,7 +7,7 @@ import useCards from "../hooks/useCards";
 
 const CardsPage = () => {
   const { value, handleGetCards, handleDeleteCard } = useCards();
-  const { isPending, error, cards } = value;
+  const { isPending, error, filteredCards } = value;
   useEffect(() => {
     handleGetCards();
   }, []);
@@ -16,9 +16,7 @@ const CardsPage = () => {
     await handleDeleteCard(cardId); // this will delete the card from the DB
     await handleGetCards();
   };
-  const handleCardLIke = (_id) => {
-    console.log(`you like card namber:${_id}`);
-  };
+
   return (
     <Container>
       <PageHeader
@@ -28,9 +26,8 @@ const CardsPage = () => {
       <CardsFeedback
         isPending={isPending}
         error={error}
-        cards={cards}
+        cards={filteredCards}
         onDelete={onDeleteCard}
-        onLike={handleCardLIke}
       />
     </Container>
   );

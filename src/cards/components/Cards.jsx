@@ -18,8 +18,8 @@ const Cards = ({ cards, onDelete, onLike }) => {
               <Card
                 key={card._id}
                 card={card}
-                handleDeleteCard={onDelete}
-                handleLikeCard={onLike}
+                onDelete={onDelete}
+                onLike={onLike}
               />
             </Box>
           </Grid>

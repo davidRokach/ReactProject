@@ -7,7 +7,7 @@ export const setTokenInLocalStorage = (encryptedToken) =>
 export const getUser = () => {
   try {
     const user = localStorage.getItem(TOKEN); //localStorage: {token: kjh34kl5h3lk45h345.k3jh45k3j4h5.kjh345kuj3h45}
-    return JwtDecode(user); // user: kjh34kl5h3lk45h345.k3jh45k3j4h5.kjh345kuj3h45 ? user = {email:"",password:"" }
+    return JwtDecode(user); // user: kjh34kl5h3lk45h345.k3jh45k3j4h5.kjh345kuj3h45
   } catch (error) {
     return null;
   }

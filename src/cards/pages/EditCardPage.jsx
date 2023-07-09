@@ -3,14 +3,13 @@ import useForm from "../../forms/hooks/useForm";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../../users/providers/UserProvider";
 import cardsSchema from "../models/joi-schema/cardsSchema";
-import Input from "../../forms/components/Input";
-import Form from "../../forms/components/Form";
 import { Container } from "@mui/material";
-import normalizeEditCard from "../helpers/normalization/normalizeEditCard";
+import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import useCards from "../hooks/useCards";
 import { useEffect } from "react";
-import initialCreateCard from "../helpers/initialForms/initialCreateCard";
+import initialCardForm from "../helpers/initialForms/initialCardForm";
 import normalizeCards from "../helpers/normalization/normalizeCards";
+import FormInput from "../../forms/components/FormInputs";
 
 const EditCardPage = () => {
   const { id } = useParams();
@@ -23,7 +22,7 @@ const EditCardPage = () => {
 
   const { user } = useUser();
 
-  const { value, ...rest } = useForm(initialCreateCard, cardsSchema, () => {
+  const { value, ...rest } = useForm(initialCardForm, cardsSchema, () => {
     handleUpdateCard(card._id, {
       ...normalizeCards(value.formData),
       user_id: card.user_id,
@@ -34,7 +33,7 @@ const EditCardPage = () => {
   useEffect(() => {
     handleGetCard(id).then((data) => {
       if (data.user_id !== user._id) return navigate(ROUTES.CARDS);
-      const initialEditCard = normalizeEditCard(data);
+      const initialEditCard = mapCardToModel(data);
       rest.setFormData(initialEditCard);
     });
   }, []);
@@ -75,25 +74,16 @@ const EditCardPage = () => {
         alignItems: "center",
       }}
     >
-      <Form
+      <FormInput
         onSubmit={rest.onSubmit}
-        onChange={rest.validateForm}
         onReset={rest.handleReset}
-        styles={{ maxWidth: "800px" }}
-        title="Create Card"
-        to={ROUTES.CARDS}
-      >
-        {mapInputs.map((input, index) => (
-          <Input
-            key={index}
-            {...input}
-            data={value.formData}
-            error={value.errors[input.name]}
-            handleChange={rest.handleChange}
-            sm={6}
-          />
-        ))}
-      </Form>
+        onFormChange={rest.validateForm}
+        errors={value.errors}
+        onInputChange={rest.handleChange}
+        data={value.formData}
+        title="Edit Card"
+        inputs={mapInputs}
+      />
     </Container>
   );
 };

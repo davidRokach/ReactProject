@@ -1,7 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import useAxios from "../../cards/hooks/useAxios";
-import { login, singup } from "../services/usersApiService";
+import {
+  EditUser,
+  getUserApi,
+  login,
+  singup,
+} from "../services/usersApiService";
 import {
   getUser,
   removeToken,
@@ -9,7 +14,9 @@ import {
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../providers/UserProvider";
-import normaliseYser from "../helpers/normalization/normalizeUser";
+import { editCard } from "../../cards/services/cardApiService";
+import normalizeUser from "../helpers/normalization/normalizeUser";
+import { useSnackbar } from "../../provider/SnackbarProvider";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
@@ -21,6 +28,7 @@ const useUsers = () => {
   const { user, setUser, setToken } = useUser();
 
   useAxios();
+  const snack = useSnackbar();
 
   // handle to set values in all the states for users
   const requestStatus = useCallback(
@@ -58,12 +66,38 @@ const useUsers = () => {
   const handleSingup = useCallback(
     async (userFormClient) => {
       try {
-        const normalizedUser = normaliseYser(userFormClient);
+        const normalizedUser = normalizeUser(userFormClient);
         await singup(normalizedUser);
         await handleLogin({
           email: userFormClient.email,
           password: userFormClient.password,
         });
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [requestStatus, handleLogin]
+  );
+
+  const handleEditUser = useCallback(
+    async (id, userFormClient) => {
+      try {
+        await EditUser(id, userFormClient);
+        snack("you update the user successfully", "success");
+        navigate(ROUTES.CARDS);
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [requestStatus, handleLogin]
+  );
+
+  const handleGetUser = useCallback(
+    async (id) => {
+      try {
+        const user = await getUserApi(id);
+        requestStatus(false, null, null, user);
+        return user;
       } catch (error) {
         requestStatus(false, error, null);
       }
@@ -85,6 +119,8 @@ const useUsers = () => {
     handleSingup,
     handleLogin,
     handleLogout,
+    handleEditUser,
+    handleGetUser,
     users,
     isLoading,
     error,

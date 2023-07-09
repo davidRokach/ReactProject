@@ -15,18 +15,12 @@ const CardsFeedback = ({
 }) => {
   if (isPending) return <Spinner />;
   if (error) return <Erorr errorMessage={error} />;
-  if (cards && !cards.length)
-    return (
-      <p>
-        Oopsi... there are no cards in the dadabase that match the parameters
-        you enter
-      </p>
-    );
-  if (cards) return <Cards cards={cards} onDelete={onDelete} onLike={onLike} />;
+
+  if (cards && cards.length)
+    return <Cards cards={cards} onDelete={onDelete} onLike={onLike} />;
   if (card)
-    return (
-      <Card card={card} onDelete={onDelete} handleLikeCard={onLike}></Card>
-    );
+    return <Card card={card} onDelete={onDelete} onLike={onLike}></Card>;
+
   return (
     <p>
       Oopsi... there are no card in the dadabase that match the parameters you
@@ -38,7 +32,10 @@ CardsFeedback.prototype = {
   isPending: bool.isRequired,
   error: string,
   cards: arrayOf(object),
-  onDelete: func,
+  onDelete: func.isRequired,
+};
+CardsFeedback.defaultProps = {
+  onLike: () => {},
 };
 
 export default CardsFeedback;

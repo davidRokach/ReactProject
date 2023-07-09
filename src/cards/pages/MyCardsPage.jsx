@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 const MyCardsPage = () => {
   const { value, handleGetmyCards, handleDeleteCard } = useCards();
-  const { cards, error, isPending } = value;
+  const { error, isPending, filteredCards } = value;
 
   const { user } = useUser();
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const MyCardsPage = () => {
         title="My Cards Page"
         subtitle="Here you can find your business cards"
       />
-      {cards && (
+      {filteredCards && (
         <Fab
           onClick={() => navigate(ROUTES.CREATE_CARDS)}
           color="primary"
@@ -52,7 +52,7 @@ const MyCardsPage = () => {
       <CardsFeedback
         isPending={isPending}
         error={error}
-        cards={cards}
+        cards={filteredCards}
         onDelete={onDeleteCard}
         onLike={handleCardLIke}
       />

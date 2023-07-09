@@ -59,3 +59,16 @@ export const deleteCard = async (id) => {
     return Promise.reject(error.message);
   }
 };
+
+export const geocodingMaps = async (address) => {
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address.houseNumber}+${address.street},${address.city},+${address.country}&key=AIzaSyAJ9XVqRqD2uuoVEETmxPeAWQHE_Sg-D4g`
+    );
+    const jsonData = await response.json();
+
+    return jsonData;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

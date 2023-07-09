@@ -30,6 +30,8 @@ import FormsTest from "../sendbox/forms/FormsTest";
 import CreateCardPage from "../cards/pages/CreateCardPage";
 import MyCardsPage from "../cards/pages/MyCardsPage";
 import EditCardPage from "../cards/pages/EditCardPage";
+import FavCardPage from "../cards/pages/FavCardPage";
+import EditUserPage from "../users/pages/EditUserPage";
 
 const Router = () => {
   return (
@@ -37,10 +39,12 @@ const Router = () => {
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
       <Route path={ROUTES.CREATE_CARDS} element={<CreateCardPage />} />
-
+      <Route path={ROUTES.FAV_CARDS} element={<FavCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+
       <Route path={ROUTES.SINGUP} element={<SingUpPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
 
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
       <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} />

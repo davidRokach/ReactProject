@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   ThemeProvider as MuiThemeProvider,
   createTheme,
@@ -8,21 +14,28 @@ import { node } from "prop-types";
 const ThemeContext = React.createContext(null);
 
 const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
+  const prefersDarkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDark, setIsDark] = useState(prefersDarkMode);
 
-  const toggleDarkMode = useCallback(
-    () => setIsDark((perv) => !perv),
-    [setIsDark]
+  const toggleDarkMode = useCallback(() => {
+    setIsDark((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    setIsDark(prefersDarkMode);
+  }, [prefersDarkMode]);
+
+  const theme = useMemo(
+    () => createTheme({ palette: { mode: isDark ? "dark" : "light" } }),
+    [isDark]
   );
-  // const toggleDarkMode = () => setIsDark(!isDark);
 
-  const theme = createTheme({
-    palette: { mode: !isDark ? "light" : "dark" },
-  });
-
-  const value = useMemo(() => {
-    return { isDark, toggleDarkMode };
-  }, [isDark, toggleDarkMode]);
+  const value = useMemo(
+    () => ({ isDark, toggleDarkMode }),
+    [isDark, toggleDarkMode]
+  );
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -37,7 +50,8 @@ ThemeProvider.propTypes = {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (!context) throw new Error(" useTheme must be within a MuiThemeProvider");
+  if (!context) throw new Error("useTheme must be within a MuiThemeProvider");
   return context;
 };
+
 export default ThemeProvider;

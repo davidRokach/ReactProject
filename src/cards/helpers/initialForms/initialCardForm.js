@@ -1,4 +1,4 @@
-const initialCreateCard = {
+const initialCardForm = {
   title: "",
   description: "",
   subtitle: "",
@@ -15,4 +15,4 @@ const initialCreateCard = {
   houseNumber: 0,
 };
 
-export default initialCreateCard;
+export default initialCardForm;

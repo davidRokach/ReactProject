@@ -1,19 +1,17 @@
 import { Container } from "@mui/material";
 import { Navigate } from "react-router-dom";
-
 import ROUTES from "../../routes/routesModel";
 import useForm from "../../forms/hooks/useForm";
-import Input from "../../forms/components/Input";
-import Form from "../../forms/components/Form";
 import useCards from "../hooks/useCards";
-import initialCreateCard from "../helpers/initialForms/initialCreateCard";
+import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardsSchema from "../models/joi-schema/cardsSchema";
 import { useUser } from "../../users/providers/UserProvider";
+import FormInput from "../../forms/components/FormInputs";
 
 const CreateCardPage = () => {
   const { handleCreateCard } = useCards();
   const { value, ...rest } = useForm(
-    initialCreateCard,
+    initialCardForm,
     cardsSchema,
     handleCreateCard
   );
@@ -54,25 +52,16 @@ const CreateCardPage = () => {
         alignItems: "center",
       }}
     >
-      <Form
+      <FormInput
         onSubmit={rest.onSubmit}
-        onChange={rest.validateForm}
         onReset={rest.handleReset}
-        styles={{ maxWidth: "800px" }}
+        onFormChange={rest.validateForm}
+        errors={value.errors}
+        onInputChange={rest.handleChange}
+        data={value.formData}
         title="Create Card"
-        to={ROUTES.CARDS}
-      >
-        {mapInputs.map((input, index) => (
-          <Input
-            key={index}
-            {...input}
-            data={value.formData}
-            error={value.errors[input.name]}
-            handleChange={rest.handleChange}
-            sm={6}
-          />
-        ))}
-      </Form>
+        inputs={mapInputs}
+      />
     </Container>
   );
 };

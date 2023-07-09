@@ -1,4 +1,4 @@
-import { Container, FormControlLabel, Grid } from "@mui/material";
+import { Checkbox, Container, FormControlLabel, Grid } from "@mui/material";
 import { Navigate } from "react-router-dom";
 
 import ROUTES from "../../routes/routesModel";
@@ -7,9 +7,9 @@ import useForm from "../../forms/hooks/useForm";
 import { useUser } from "../providers/UserProvider";
 import Input from "../../forms/components/Input";
 import Form from "../../forms/components/Form";
-import { CheckBox } from "@mui/icons-material";
 import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import signupSchema from "../models/joi-schema/singupSchema";
+import FormInput from "../../forms/components/FormInputs";
 
 const SignupPage = () => {
   const { handleSingup } = useUsers();
@@ -23,6 +23,30 @@ const SignupPage = () => {
 
   if (user) return <Navigate replace to={ROUTES.CARDS} />;
 
+  const inputFactory = (name, label, required, type) => ({
+    name,
+    label,
+    required,
+    type,
+  });
+
+  const mapInputs = [
+    inputFactory("first", "first name", true, "text"),
+    inputFactory("middle", "middle name", false, "text"),
+    inputFactory("last", "last name", true, "text"),
+    inputFactory("phone", "phone", true, "phone"),
+    inputFactory("email", "email", true, "email"),
+    inputFactory("password", "password", true, "password"),
+    inputFactory("url", "image url", false, "text"),
+    inputFactory("imageAlt", "image alt", false, "text"),
+    inputFactory("state", "state", false, "text"),
+    inputFactory("country", "country", true, "text"),
+    inputFactory("city", "city", true, "text"),
+    inputFactory("street", "street", true, "text"),
+    inputFactory("houseNumber", "houseNumber", true, "number"),
+    inputFactory("zip", "zip", false, "number"),
+  ];
+
   return (
     <Container
       sx={{
@@ -32,152 +56,32 @@ const SignupPage = () => {
         alignItems: "center",
       }}
     >
-      <Form
+      <FormInput
         onSubmit={rest.onSubmit}
-        onChange={rest.validateForm}
         onReset={rest.handleReset}
-        styles={{ maxWidth: "800px" }}
-        title="register"
-        to={ROUTES.CARDS}
+        onFormChange={rest.validateForm}
+        errors={value.errors}
+        onInputChange={rest.handleChange}
+        data={value.formData}
+        title="Sing Up"
+        inputs={mapInputs}
       >
-        <Input
-          name="first"
-          label="first name"
-          error={value.errors.first}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="middle"
-          label="middle name"
-          error={value.errors.middle}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-          required={false}
-        />
-        <Input
-          name="last"
-          label="last name"
-          error={value.errors.last}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="phone"
-          label="phone"
-          type="phone"
-          error={value.errors.phone}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="email"
-          label="email"
-          type="email"
-          error={value.errors.email}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="password"
-          label="password"
-          type="password"
-          error={value.errors.password}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="url"
-          label="image url"
-          error={value.errors.url}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-          required={false}
-        />
-        <Input
-          name="alt"
-          label="image alt"
-          error={value.errors.alt}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-          required={false}
-        />
-        <Input
-          name="state"
-          label="state"
-          error={value.errors.state}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-          required={false}
-        />
-        <Input
-          label="country"
-          name="country"
-          error={value.errors.country}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="city"
-          label="city"
-          error={value.errors.city}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="street"
-          label="street"
-          error={value.errors.street}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="houseNumber"
-          label="house Number"
-          type="number"
-          error={value.errors.houseNumber}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-        />
-        <Input
-          name="zip"
-          label="zip"
-          error={value.errors.zip}
-          handleChange={rest.handleChange}
-          data={value.formData}
-          sm={6}
-          required={false}
-        />
-
         <Grid item>
           <FormControlLabel
             onChange={(e) =>
-              rest.setData({
+              rest.setFormData({
                 ...value.formData,
-                isBusiness: !!e.target.checked,
+                isBusiness: e.target.checked,
               })
             }
             name="isBusiness"
             control={
-              <CheckBox value={value.formData.isBusiness} color="primary" />
+              <Checkbox checked={value.formData.isBusiness} color="primary" />
             }
             label="Signup as Business"
           ></FormControlLabel>
         </Grid>
-      </Form>
+      </FormInput>
     </Container>
   );
 };

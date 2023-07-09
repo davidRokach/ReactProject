@@ -5,7 +5,6 @@ import { useCallback, useMemo, useState } from "react";
 const useForm = (initialForm, schema, handleSubmit) => {
   //data for the all form
   const [formData, setFormData] = useState(initialForm);
-
   //errors for the all form
   const [errors, setErrors] = useState({});
 

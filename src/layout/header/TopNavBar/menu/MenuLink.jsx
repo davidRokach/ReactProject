@@ -6,7 +6,7 @@ import NavBarLink from "../../../../routes/NavBarLink";
 
 const MenuLink = ({ label, navigateTo, onClick, styles }) => {
   return (
-    <NavBarLink to={navigateTo} color="black">
+    <NavBarLink to={navigateTo} color="inherit">
       <MenuItem sx={{ ...styles }} onClick={onClick}>
         {makeFirstLetterCapital(label)}
       </MenuItem>
