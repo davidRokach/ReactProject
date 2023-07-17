@@ -37,6 +37,22 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
           onClick={onClose}
           styles={{ display: { xs: "block", md: "none" } }}
         />
+        {user?.isBusiness && (
+          <>
+            <MenuLink
+              label="My Cards"
+              navigateTo={ROUTES.MY_CARDS}
+              onClick={onClose}
+              styles={{ display: { xs: "block", md: "none" } }}
+            />
+            <MenuLink
+              label="Fav Cards"
+              navigateTo={ROUTES.FAV_CARDS}
+              onClick={onClose}
+              styles={{ display: { xs: "block", md: "none" } }}
+            />
+          </>
+        )}
 
         {!user && (
           <>
@@ -64,6 +80,11 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
             <MenuLink
               label="edit account"
               navigateTo={ROUTES.EDIT_USER}
+              onClick={onClose}
+            />
+            <MenuLink
+              label="CRM user"
+              navigateTo={ROUTES.CRM_USER}
               onClick={onClose}
             />
 

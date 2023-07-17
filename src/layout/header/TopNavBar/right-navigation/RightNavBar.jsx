@@ -6,23 +6,15 @@ import SearchBar from "./SearchBar";
 import NotLogged from "./NotLogged";
 import Logged from "./Logged";
 import MoreButton from "./MoreButton";
-import MenuBar from "./MenuBar";
 import { useUser } from "../../../../users/providers/UserProvider";
 
 const RightNavBar = () => {
-  // const user = false;
   let anchorEl = null;
 
   const { user } = useUser();
 
   const setAnchorEl = (target) => {
     anchorEl = target;
-    console.log("you opened menu");
-  };
-
-  const closeMenu = () => {
-    anchorEl = null;
-    console.log("you closed menu");
   };
 
   const { isDark, toggleDarkMode } = useTheme();
@@ -41,12 +33,6 @@ const RightNavBar = () => {
       </Box>
 
       <MoreButton onClick={setAnchorEl} />
-
-      <MenuBar
-        isMenuOpen={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onCloseMenu={closeMenu}
-      />
     </>
   );
 };

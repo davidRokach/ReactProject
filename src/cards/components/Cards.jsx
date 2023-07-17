@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import Card from "./card/Card";
 
 const Cards = ({ cards, onDelete, onLike }) => {
-  console.log(cards);
   if (!cards.length) {
     return (
       <Typography>Ooops it seams that there are no cards to show</Typography>

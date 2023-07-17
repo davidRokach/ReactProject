@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Business Card Builder Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Business Card Builder Website is a React-based project aimed at providing users with a platform to create and manage their own business cards. The website features a user-friendly interface with top and bottom navigation menus, offering various functionalities such as card creation, editing, deletion, and favoriting. Additionally, the project incorporates user registration and login capabilities, as well as a CRM (Customer Relationship Management) feature for administrators to edit other users' details.
 
-## Available Scripts
+## Functionality
 
-In the project directory, you can run:
+#### 1. Navigation Menu:
 
-### `npm start`
+- The website includes a top and bottom navigation menu for easy access to different sections and features of the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 2. Card Creation:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Users can create customized business cards by providing relevant details such as name, contact information, job title, and company details.
+- Creating a card also creates a landing page with full business details, plus a map with the location of the business
 
-### `npm test`
+#### 3. Card Editing:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Users have the ability to edit their existing business cards. They can modify the card content of the business card.
+- The editing feature enables users to update their contact details, change the design, or make any necessary adjustments to keep their business cards up to date.
 
-### `npm run build`
+#### 4. Card Deletion:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Users can delete unwanted or outdated business cards from their collection. The deletion option allows users to remove cards they no longer need or wish to keep.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 5. Favorites:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- The website provides a favorites feature that allows users to mark specific business cards as favorites for quick access or reference.
+- Users can easily identify and access their favorite cards, ensuring they have quick access to important contacts or designs.
 
-### `npm run eject`
+#### 6. User Registration and Login:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- To utilize the website's features, users are required to register an account.
+- The registration process typically involves providing necessary information such as name, email address, and password.
+- Once registered, users can log in securely using their credentials to access their saved business cards and other functionalities.
+- Logging in with an incorrect password more than three times blocked the user from logging into the site for 24 hours
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 7. User Details Editing:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Users have the option to edit their personal details, such as name, email address, and password, through the edit account section.
+- This feature allows users to keep their information up to date and make any necessary changes as required.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### 8. CRM (Administrator Access):
 
-## Learn More
+- The website incorporates a CRM feature that grants administrators the ability to manage and edit users details.
+- Administrators can access a separate interface that provides them with necessary tools and permissions to edit user information
+- The admins can edit whether the users will be admin or business type and can delete users
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To get started with the Business Card Builder Website, follow these steps:
 
-### Code Splitting
+1. Clone the repository: `git clone <repository_url>`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Access the website locally at: `http://localhost:3000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Technologies Used
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React
+- JavaScript
+- HTML
+- CSS

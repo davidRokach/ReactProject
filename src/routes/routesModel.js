@@ -12,5 +12,6 @@ const ROUTES = {
   USER_PROFILE: "/user-info",
   EDIT_USER: "/edit-user",
   SANDBOX: "/sandbox",
+  CRM_USER: "/crm-user",
 };
 export default ROUTES;

@@ -32,6 +32,7 @@ import MyCardsPage from "../cards/pages/MyCardsPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import FavCardPage from "../cards/pages/FavCardPage";
 import EditUserPage from "../users/pages/EditUserPage";
+import CrmUserPage from "../users/pages/CrmUserPage";
 
 const Router = () => {
   return (
@@ -45,6 +46,7 @@ const Router = () => {
       <Route path={ROUTES.SINGUP} element={<SingUpPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
+      <Route path={ROUTES.CRM_USER} element={<CrmUserPage />} />
 
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
       <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} />

@@ -17,7 +17,7 @@ const useAxios = () => {
 
       axios.interceptors.response.use(null, (error) => {
         const expectedError = error.response && error.response.status >= 400;
-        if (expectedError) snack(error.message, "error");
+        if (expectedError) snack(error.response.data, "error");
         return Promise.reject(error);
       });
     }

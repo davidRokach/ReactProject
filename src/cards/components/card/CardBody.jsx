@@ -20,7 +20,7 @@ const CardBody = ({ name, profession, phone, email, cardNumber, address }) => {
           <Typography variant="subtitle2" component="strong">
             Adress:{" "}
           </Typography>
-          {city} {street} {houseNumber}{" "}
+          {city}, {street}, {houseNumber}{" "}
         </Typography>
 
         <Typography textAlign="left" color="text.secondary">

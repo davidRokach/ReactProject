@@ -13,7 +13,7 @@ const Card = ({ card, onDelete, onLike }) => {
   return (
     <MuiCard
       sx={{
-        width: 280,
+        width: 300,
         margin: "auto",
         marginTop: 2,
         padding: 1,

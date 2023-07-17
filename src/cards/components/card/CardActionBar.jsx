@@ -6,7 +6,7 @@ import CallIcon from "@mui/icons-material/Call";
 import { useUser } from "../../../users/providers/UserProvider";
 import { useState } from "react";
 import { func, string } from "prop-types";
-import CardDeleteDialog from "./CardDeleteDialog";
+import CardDeleteDialog from "../../../components/DeleteDialog";
 import ROUTES from "../../../routes/routesModel";
 import { useNavigate } from "react-router-dom";
 import useCards from "../../hooks/useCards";
@@ -83,6 +83,7 @@ const CardActionBar = ({
         isDialogopen={isDialogopen}
         onDelete={handleDeleteCard}
         onChangeDialog={handleDialog}
+        object={"card"}
       />
     </>
   );

@@ -1,12 +1,9 @@
 import { Checkbox, Container, FormControlLabel, Grid } from "@mui/material";
 import { Navigate } from "react-router-dom";
-
 import ROUTES from "../../routes/routesModel";
 import useUsers from "../hooks/useUsers";
 import useForm from "../../forms/hooks/useForm";
 import { useUser } from "../providers/UserProvider";
-import Input from "../../forms/components/Input";
-import Form from "../../forms/components/Form";
 import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import signupSchema from "../models/joi-schema/singupSchema";
 import FormInput from "../../forms/components/FormInputs";

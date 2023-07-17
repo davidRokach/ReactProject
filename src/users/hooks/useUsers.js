@@ -2,24 +2,29 @@ import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import useAxios from "../../cards/hooks/useAxios";
 import {
+  DeleteUser,
   EditUser,
+  GetUsers,
+  changeBusinessStatus,
   getUserApi,
   login,
   singup,
 } from "../services/usersApiService";
 import {
+  getError,
   getUser,
   removeToken,
+  setErrorInLocalStorage,
   setTokenInLocalStorage,
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../providers/UserProvider";
-import { editCard } from "../../cards/services/cardApiService";
 import normalizeUser from "../helpers/normalization/normalizeUser";
 import { useSnackbar } from "../../provider/SnackbarProvider";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
+
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,6 +33,7 @@ const useUsers = () => {
   const { user, setUser, setToken } = useUser();
 
   useAxios();
+
   const snack = useSnackbar();
 
   // handle to set values in all the states for users
@@ -45,6 +51,12 @@ const useUsers = () => {
   const handleLogin = useCallback(
     async (user) => {
       try {
+        const checkError = getError();
+        if (!checkError)
+          return snack(
+            "You have tried to enter an incorrect username or password more than three times, please try again in 24 hours ",
+            "error"
+          );
         const token = await login(user); // token from the server [token: kjh34kl5h3lk45h345.k3jh45k3j4h5.kjh345kuj3h45]
         setTokenInLocalStorage(token); // set localSrorage with the token
         setToken(token); // updating the state with the new token
@@ -52,6 +64,11 @@ const useUsers = () => {
         requestStatus(false, null, null, userFromLocalStorage);
         navigate(ROUTES.CARDS);
       } catch (error) {
+        if (
+          (error.response.data =
+            "Authentication Error: Invalid email or password")
+        )
+          setErrorInLocalStorage();
         requestStatus(false, error, null);
       }
     },
@@ -95,8 +112,44 @@ const useUsers = () => {
   const handleGetUser = useCallback(
     async (id) => {
       try {
-        const user = await getUserApi(id);
+        const userData = await getUserApi(id);
         requestStatus(false, null, null, user);
+        return userData;
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [requestStatus, handleLogin]
+  );
+
+  const handleGetUsers = useCallback(async () => {
+    try {
+      const users = await GetUsers();
+      requestStatus(false, null, users, user);
+      return users;
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, [requestStatus, handleLogin]);
+
+  const handleDeleteUser = useCallback(
+    async (id) => {
+      try {
+        await DeleteUser(id);
+        handleGetUsers();
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [requestStatus, handleLogin]
+  );
+
+  const handleChangeBusinessStatus = useCallback(
+    async (id) => {
+      try {
+        const user = await changeBusinessStatus(id);
+        snack("you change Business Status successfully", "success");
+        handleGetUsers();
         return user;
       } catch (error) {
         requestStatus(false, error, null);
@@ -121,10 +174,10 @@ const useUsers = () => {
     handleLogout,
     handleEditUser,
     handleGetUser,
-    users,
-    isLoading,
-    error,
-    user,
+    handleGetUsers,
+    handleDeleteUser,
+    handleChangeBusinessStatus,
+    value,
   };
 };
 

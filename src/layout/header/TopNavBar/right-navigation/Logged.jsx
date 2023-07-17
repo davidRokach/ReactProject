@@ -11,9 +11,12 @@ const Logged = () => {
     <Tooltip title="Open settings">
       <IconButton
         sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}
-        onClick={(e) => setOpen(true)}
+        onClick={() => setOpen(true)}
       >
-        <Avatar alt="Bird" src="/assets/images/avatar.png" />
+        <Avatar
+          alt="User, form freepik"
+          src="https://cdn-icons-png.flaticon.com/512/219/219983.png?w=740&t=st=1688902287~exp=1688902887~hmac=365dfb185bad9f56cac9c588cec6862d7614dc73f69de1ee278d9c305a3c9fd7"
+        />
       </IconButton>
     </Tooltip>
   );
