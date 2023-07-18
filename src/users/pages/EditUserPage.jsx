@@ -52,7 +52,7 @@ const EditUserPage = () => {
     inputFactory("phone", "phone", true, "phone"),
     inputFactory("email", "email", true, "email"),
     inputFactory("url", "image url", false, "text"),
-    inputFactory("imageAlt", "image alt", false, "text"),
+    inputFactory("alt", "image alt", false, "text"),
     inputFactory("state", "state", false, "text"),
     inputFactory("country", "country", true, "text"),
     inputFactory("city", "city", true, "text"),

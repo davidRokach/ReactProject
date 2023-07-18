@@ -12,10 +12,8 @@ const containerStyle = {
 const Map = ({ address }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "api key",
+    googleMapsApiKey: "AIzaSyAJ9XVqRqD2uuoVEETmxPeAWQHE_Sg-D4g",
   });
-
-  const [map, setMap] = useState(null);
 
   const [location, setLocation] = useState(null);
 
@@ -33,25 +31,6 @@ const Map = ({ address }) => {
     fetchData();
   }, []);
 
-  const onLoad = useCallback(
-    function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds(location);
-      console.log(map);
-      map.fitBounds(bounds);
-      setMap(map);
-    },
-    [location]
-  );
-
-  const onUnmount = useCallback((map) => {
-    setMap(null);
-  }, []);
-
-  const onLoadMarker = (marker) => {
-    console.log(location);
-    // console.log("marker: ", marker);
-  };
-
   if (loadError) {
     return <Erorr errorMessage="the map is not working right now" />;
   }
@@ -61,14 +40,8 @@ const Map = ({ address }) => {
   }
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={location}
-      zoom={14}
-      // onLoad={onLoad}
-      // onUnmount={onUnmount}
-    >
-      <Marker visible={true} position={location} onLoad={onLoadMarker} />
+    <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={14}>
+      <Marker visible={true} position={location} />
     </GoogleMap>
   ) : (
     <Spinner />

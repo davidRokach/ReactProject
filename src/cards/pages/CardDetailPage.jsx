@@ -1,4 +1,11 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActions,
+  Container,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import PageHeader from "../../components/PageHeader";
 import { useParams } from "react-router-dom";
 import useCards from "../hooks/useCards";
@@ -6,19 +13,18 @@ import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import Erorr from "../../components/Error";
 import Map from "../../components/Map";
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import WebIcon from "@mui/icons-material/Web";
 
 const CardDetailPage = () => {
   const { id } = useParams();
-  const { handleGetCard, handleDeleteCard, value } = useCards();
+  const { handleGetCard, value } = useCards();
   const { card, isPending, error } = value;
   useEffect(() => {
     handleGetCard(id);
   }, []);
 
-  const onDeleteCard = async (cardId) => {
-    await handleDeleteCard(cardId); // this will delete the card from the DB
-    await handleGetCard();
-  };
   if (isPending) return <Spinner />;
   if (error) return <Erorr errorMessage={error} />;
   if (!card)
@@ -53,6 +59,26 @@ const CardDetailPage = () => {
           {card.description || "no description"}
         </Typography>
       </Container>
+      <Card sx={{ width: 170, margin: "auto", marginY: 2, padding: 1 }}>
+        <CardActions>
+          <IconButton
+            onClick={() => (window.location.href = `tel:${card.phone}`)}
+          >
+            <CallIcon />
+          </IconButton>
+          <IconButton
+            onClick={() =>
+              (window.location.href = `mailto:${card.email}?subject=Customer from the site
+              )}`)
+            }
+          >
+            <EmailIcon />
+          </IconButton>
+          <IconButton onClick={() => (window.location.href = card.web)}>
+            <WebIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
       <Map address={card.address} />
     </>
   );

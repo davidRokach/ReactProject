@@ -106,7 +106,7 @@ const useUsers = () => {
         requestStatus(false, error, null);
       }
     },
-    [requestStatus, handleLogin]
+    [requestStatus, navigate]
   );
 
   const handleGetUser = useCallback(
@@ -119,7 +119,7 @@ const useUsers = () => {
         requestStatus(false, error, null);
       }
     },
-    [requestStatus, handleLogin]
+    [requestStatus]
   );
 
   const handleGetUsers = useCallback(async () => {
@@ -130,7 +130,7 @@ const useUsers = () => {
     } catch (error) {
       requestStatus(false, error, null);
     }
-  }, [requestStatus, handleLogin]);
+  }, [requestStatus]);
 
   const handleDeleteUser = useCallback(
     async (id) => {
@@ -141,7 +141,7 @@ const useUsers = () => {
         requestStatus(false, error, null);
       }
     },
-    [requestStatus, handleLogin]
+    [requestStatus]
   );
 
   const handleChangeBusinessStatus = useCallback(
@@ -155,7 +155,7 @@ const useUsers = () => {
         requestStatus(false, error, null);
       }
     },
-    [requestStatus, handleLogin]
+    [requestStatus]
   );
 
   const value = useMemo(

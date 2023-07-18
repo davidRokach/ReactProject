@@ -17,6 +17,7 @@ const CardActionBar = ({
   cardId,
   cardUserId,
   cardsLikes,
+  card,
 }) => {
   const [isDialogopen, setDialog] = useState(false);
   const { user } = useUser();
@@ -68,7 +69,9 @@ const CardActionBar = ({
         </Box>
 
         <Box>
-          <IconButton>
+          <IconButton
+            onClick={() => (window.location.href = `tel:${card.phone}`)}
+          >
             <CallIcon />
           </IconButton>
 
