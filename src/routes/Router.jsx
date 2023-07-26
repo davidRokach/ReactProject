@@ -37,6 +37,7 @@ import CrmUserPage from "../users/pages/CrmUserPage";
 const Router = () => {
   return (
     <Routes>
+      <Route path={ROUTES.ROOT} element={<CardsPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
       <Route path={ROUTES.CREATE_CARDS} element={<CreateCardPage />} />
