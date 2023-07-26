@@ -51,7 +51,7 @@ To get started with the Business Card Builder Website, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/davidRokach/ReactProject.git`
 2. Install dependencies in the project and the server : `npm install`
-3. Start the development server: `npm start`
+3. Start the development server in the project and the server: `npm start`
 4. Access the website locally at: `http://localhost:3000`
 
 ## Technologies Used
