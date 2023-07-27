@@ -9,7 +9,6 @@ const ROUTES = {
   CARD_INFO: "/CARD-INFO",
   SINGUP: "/singup",
   LOGIN: "/login",
-  USER_PROFILE: "/user-info",
   EDIT_USER: "/edit-user",
   SANDBOX: "/sandbox",
   CRM_USER: "/crm-user",
