@@ -1,6 +1,6 @@
-import { date } from "joi";
 import JwtDecode from "jwt-decode";
 const TOKEN = "token";
+const ERROR_NUMBER = "errorNunber";
 const twentyFourHours = 24 * 60 * 60 * 1000;
 
 export const setTokenInLocalStorage = (encryptedToken) =>
@@ -20,23 +20,24 @@ export const removeToken = () => localStorage.removeItem(TOKEN);
 export const getToken = () => localStorage.getItem(TOKEN);
 
 export const setErrorInLocalStorage = () => {
-  let error = JSON.parse(localStorage.getItem("errorNunber"));
+  let error = JSON.parse(localStorage.getItem(ERROR_NUMBER));
   if (error) {
     error = [error[0] + 1, Date.now()];
-    localStorage.setItem("errorNunber", JSON.stringify(error));
+    localStorage.setItem(ERROR_NUMBER, JSON.stringify(error));
     return;
   }
   error = [1, Date.now()];
-  localStorage.setItem("errorNunber", JSON.stringify(error));
+  localStorage.setItem(ERROR_NUMBER, JSON.stringify(error));
 };
 
 export const getError = () => {
-  const error = JSON.parse(localStorage.getItem("errorNunber"));
+  const error = JSON.parse(localStorage.getItem(ERROR_NUMBER));
   if (!error) return "no error";
   if (error[0] <= 3) return "no error";
   if (Date.now() - error[1] >= twentyFourHours) {
-    localStorage.removeItem("errorNunber");
+    removeErrorToken();
     return "no error";
   }
   return;
 };
+export const removeErrorToken = () => localStorage.removeItem("errorNunber");

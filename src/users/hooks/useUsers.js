@@ -13,6 +13,7 @@ import {
 import {
   getError,
   getUser,
+  removeErrorToken,
   removeToken,
   setErrorInLocalStorage,
   setTokenInLocalStorage,
@@ -58,6 +59,7 @@ const useUsers = () => {
             "error"
           );
         const token = await login(user); // token from the server [token: kjh34kl5h3lk45h345.k3jh45k3j4h5.kjh345kuj3h45]
+        removeErrorToken();
         setTokenInLocalStorage(token); // set localSrorage with the token
         setToken(token); // updating the state with the new token
         const userFromLocalStorage = getUser(); // decoding the token with JwtDecode and get user

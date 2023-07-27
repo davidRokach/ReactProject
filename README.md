@@ -42,6 +42,7 @@ The Business Card Builder Website is a React-based project aimed at providing us
 #### 8. CRM (Administrator Access):
 
 - The website incorporates a CRM feature that grants administrators the ability to manage and edit users details.
+- The design is of a crm page is responsive, on a small screen display the table is replaced by the users' cards
 - Administrators can access a separate interface that provides them with necessary tools and permissions to edit user information
 - The admins can edit whether the users will be admin or business type and can delete users
 

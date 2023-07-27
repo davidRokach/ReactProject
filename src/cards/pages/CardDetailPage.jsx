@@ -66,6 +66,7 @@ const CardDetailPage = () => {
           >
             <CallIcon />
           </IconButton>
+
           <IconButton
             onClick={() =>
               (window.location.href = `mailto:${card.email}?subject=Customer from the site
