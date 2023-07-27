@@ -1,12 +1,15 @@
 # Business Card Builder Website
 
-The Business Card Builder Website is a React-based project aimed at providing users with a platform to create and manage their own business cards. The website features a user-friendly interface with top and bottom navigation menus, offering various functionalities such as card creation, editing, deletion, and favoriting. Additionally, the project incorporates user registration and login capabilities, as well as a CRM (Customer Relationship Management) feature for administrators to edit other users' details.
+The Business Card Builder Website is a React-based project aimed at providing users with a platform to create and manage their own business cards. The website features a user-friendly and responsive interface with top and bottom navigation menus, offering various functionalities such as card creation, editing, deletion, and favoriting. Additionally, the project incorporates user registration and login capabilities, as well as a CRM (Customer Relationship Management) feature for administrators to edit other users' details.
 
 ## Functionality
 
 #### 1. Navigation Menu:
 
 - The website includes a top and bottom navigation menu for easy access to different sections and features of the application.
+- Navigation menu changes according to user permissions (business or administrator)
+- The website includes a search bar where you can search for cards on any page that displays cards, and also search by users on the CRM page
+- The top navigation menu also includes a button that changes the website to dark mode and vice versa, the button is connected to the device that displays it - if the device itself is in dark mode then the website will be in dark mode
 
 #### 2. Card Creation:
 

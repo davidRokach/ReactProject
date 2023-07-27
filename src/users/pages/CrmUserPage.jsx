@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import useUsers from "../hooks/useUsers";
-import { Navigate } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import CardDeleteDialog from "../../components/DeleteDialog";
 import CardCrm from "../components/CardCrm";
@@ -17,9 +17,28 @@ const CrmUserPage = () => {
 
   const { users, user } = value;
 
+  const [query, setQuery] = useState(""); // the query by, ex: name, id
+  const [filteredUsers, setFilteredUsers] = useState([]); // the users filtered by query
+  const [searchParams] = useSearchParams(); // the search params from the url
+
   useEffect(() => {
     handleGetUsers();
   }, []);
+
+  useEffect(() => {
+    setQuery(searchParams.get("q") || "");
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (users) {
+      setFilteredUsers(
+        users.filter(
+          (user) =>
+            user.name.first.includes(query) || String(user._id).includes(query)
+        )
+      );
+    }
+  }, [query, users]);
 
   const [isDialogopen, setDialog] = useState(false);
   const [userId, setuserId] = useState(null);
@@ -52,12 +71,12 @@ const CrmUserPage = () => {
         subtitle="here you can see all the users and update and delete them "
       />
       <CardCrm
-        users={users}
+        users={filteredUsers}
         handleDialog={handleDialog}
         handleChangeBusinessStatus={handleChangeBusinessStatus}
       />
       <TableCrm
-        users={users}
+        users={filteredUsers}
         handleDialog={handleDialog}
         handleChangeBusinessStatus={handleChangeBusinessStatus}
       />
