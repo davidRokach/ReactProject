@@ -20,10 +20,12 @@ The Business Card Builder Website is a React-based project aimed at providing us
 
 - Users have the ability to edit their existing business cards. They can modify the card content of the business card.
 - The editing feature enables users to update their contact details, change the design, or make any necessary adjustments to keep their business cards up to date.
+- This option is only for cards you have created
 
 #### 4. Card Deletion:
 
 - Users can delete unwanted or outdated business cards from their collection. The deletion option allows users to remove cards they no longer need or wish to keep.
+- This option is only available for cards you've created, but if you're an admin you can delete any card
 
 #### 5. Favorites:
 
