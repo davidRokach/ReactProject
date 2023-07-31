@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { useEffect, useState } from "react";
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import Spinner from "./Spinner";
 import { geocodingMaps } from "../cards/services/cardApiService";
 import Erorr from "./Error";
@@ -39,9 +39,9 @@ const Map = ({ address }) => {
     return <Erorr errorMessage="the address of the card was not found " />;
   }
 
-  return isLoaded ? (
+  return isLoaded || location ? (
     <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={14}>
-      <Marker visible={true} position={location} />
+      <MarkerF position={location} visible={true} />
     </GoogleMap>
   ) : (
     <Spinner />
